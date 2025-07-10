@@ -9501,7 +9501,7 @@ IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Psychic
 - Future Sight
 
-=== TRAINER_BRENDAN_ROUTE_103_MUDKIP ===
+=== TRAINER_BRENDAN_CRESTFALL_CAVE_B1F_MUDKIP ===
 Name: BRENDAN
 Class: Rival
 Pic: Brendan
@@ -9556,7 +9556,7 @@ Grovyle
 Level: 31
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-=== TRAINER_BRENDAN_ROUTE_103_TREECKO ===
+=== TRAINER_BRENDAN_CRESTFALL_CAVE_B1F_TREECKO ===
 Name: BRENDAN
 Class: Rival
 Pic: Brendan
@@ -9611,7 +9611,7 @@ Combusken
 Level: 31
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-=== TRAINER_BRENDAN_ROUTE_103_TORCHIC ===
+=== TRAINER_BRENDAN_CRESTFALL_CAVE_B1F_TORCHIC ===
 Name: BRENDAN
 Class: Rival
 Pic: Brendan

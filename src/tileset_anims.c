@@ -736,6 +736,13 @@ void InitTilesetAnim_Lilycove(void)
     sSecondaryTilesetAnimCallback = NULL;
 }
 
+void InitTilesetAnim_Mooncrest(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = sPrimaryTilesetAnimCounterMax;
+    sSecondaryTilesetAnimCallback = NULL;
+}
+
 void InitTilesetAnim_Mossdeep(void)
 {
     sSecondaryTilesetAnimCounter = 0;

@@ -1,0 +1,1 @@
+tools/poryscript/poryscript -i data/maps/IndoorMooncrestTownPlayerHouse/scripts.pory -o data/maps/IndoorMooncrestTownPlayerHouse/scripts.inc -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json

@@ -1,0 +1,80 @@
+mapscripts MooncrestTown_MapScripts{
+    MAP_SCRIPT_ON_TRANSITION: MooncrestTown_OnTransition
+    MAP_SCRIPT_ON_FRAME_TABLE[
+        VAR_HEMLOCK_LAB_STATE, 2: MooncrestTown_On_Frame_Table
+    ]
+}
+
+script MooncrestTown_On_Frame_Table{
+    if (flag(FLAG_SYS_POKEMON_GET)){
+        setvar(VAR_HEMLOCK_LAB_STATE, 3)
+    }
+}
+
+script MooncrestTown_OnTransition{
+    setflag(FLAG_VISITED_MOONCREST_TOWN)
+    random(8)
+    switch(var(VAR_RESULT)){
+        case 1: setweather(WEATHER_RAIN)
+        case 2: setweather(WEATHER_NONE)
+        case 3: setweather(WEATHER_NONE)
+        case 4: setweather(WEATHER_NONE)
+        case 5: setweather(WEATHER_NONE)
+        case 6: setweather(WEATHER_NONE)
+        case 7: setweather(WEATHER_NONE)
+        case 8: setweather(WEATHER_NONE)
+    }
+}
+
+script MooncrestTown_Stay_Safe{
+    if(var(VAR_HEMLOCK_LAB_STATE) < 3){
+        lockall
+        playse(SE_PIN)
+        applymovement(1, Common_Movement_ExclamationMark)
+        waitmovement(0)
+        applymovement(1, Common_Movement_Delay48)
+        waitmovement(0)
+        applymovement(LOCALID_PLAYER, moves(lock_facing_direction, walk_down, unlock_facing_direction))
+        applymovement(1, moves(walk_right, face_down))
+        msgbox(format("This cave is really unsafe if you don't have a pokemon."))
+        waitmessage
+        applymovement(1, moves(walk_left, face_down))
+        waitmovement(0)
+        releaseall
+    }
+}
+
+script MooncrestTown_RivalHouseSign {
+    lockall
+    checkplayergender
+    if (var(VAR_RESULT) == MALE) {
+        msgbox("It's May's house.")
+    } else {
+        msgbox("It's Brendan's house.")
+    }
+    releaseall
+}
+
+script MooncrestTown_PlayerHouseSign {
+    lockall
+    msgbox(format("You should recognize your own home..."))
+    releaseall
+}
+
+script MooncrestTown_HemlocksLabSign {
+    lockall
+    msgbox("It's Hemlock's Lab")
+    releaseall
+}
+
+script MooncrestTown_CrestfallCaveSign {
+    lockall
+    msgbox(format("Crestfall Cave. Rumor has it that there's rare Pokemon to be found in the elaborate caves inside"))
+    releaseall
+}
+
+script MooncrestTown_TownSign {
+    lockall
+    msgbox("Mooncrest Town, your home.")
+    releaseall
+}

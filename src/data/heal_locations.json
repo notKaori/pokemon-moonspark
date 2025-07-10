@@ -1,10 +1,10 @@
 {
   "heal_locations": [
     {
-      "id": "HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F",
-      "map": "MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F",
-      "x": 4,
-      "y": 2
+      "id": "HEAL_LOCATION_MOONCREST_TOWN_PLAYER_HOUSE",
+      "map": "MAP_MOONCREST_TOWN_PLAYER_HOUSE",
+      "x": 7,
+      "y": 11
     },
     {
       "id": "HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F",
@@ -131,6 +131,12 @@
       "map": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST",
       "x": 3,
       "y": 52
+    },
+    {
+      "id": "HEAL_LOCATION_PETALBURG_CITY_2",
+      "map": "MAP_PETALBURG_CITY",
+      "x": 15,
+      "y": 15
     }
   ]
 }

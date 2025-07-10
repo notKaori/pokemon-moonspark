@@ -1157,3 +1157,27 @@ EventScript_VsSeekerChargingDone::
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
 	.include "data/scripts/dexnav.inc"
+
+	.include "data/maps/MooncrestTown/scripts.inc"
+
+	.include "data/maps/RouteA1/scripts.inc"
+
+	.include "data/maps/ValleyTown/scripts.inc"
+
+	.include "data/maps/MooncrestTown_Player_House/scripts.inc"
+
+	.include "data/maps/MooncrestTown_Rivals_House/scripts.inc"
+
+	.include "data/maps/MooncrestTown_Hemlocks_Lab/scripts.inc"
+
+	.include "data/maps/CresftallCave_1F/scripts.inc"
+
+	.include "data/maps/CrestfallCave_2f/scripts.inc"
+
+	.include "data/maps/CrestfallCave/scripts.inc"
+
+	.include "data/maps/CrestfallPeak/scripts.inc"
+
+	.include "data/maps/CrestfallCave_B1F/scripts.inc"
+
+	.include "data/maps/CrestfallCave_B2F/scripts.inc"

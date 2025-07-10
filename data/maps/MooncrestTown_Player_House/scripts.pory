@@ -1,0 +1,55 @@
+mapscripts MooncrestTown_Player_House_MapScripts{
+    MAP_SCRIPT_ON_FRAME_TABLE[
+        VAR_MOONCREST_INTRO_STATE, 2: MooncrestTown_Player_House_On_Frame_Table
+    ]
+}
+
+script MooncrestTown_Player_House_On_Frame_Table{
+    lockall
+    setflag(B_FLAG_NO_BAG_USE)
+    setflag(B_FLAG_SLEEP_CLAUSE)
+    playse(SE_PIN)
+    applymovement(1, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    applymovement(1, Common_Movement_Delay48)
+    waitmovement(0)
+    applymovement(1, moves(walk_down * 3, face_left))
+    waitmovement(0)
+    applymovement(LOCALID_PLAYER, moves(face_right))
+    waitmovement(0)
+    msgbox(format("Hey {PLAYER}, Brendan was looking for you. You should head over to his place.\N Before you go though, you should take these. I have a feeling you'll be needing them."))
+    waitmessage
+    playfanfare(MUS_OBTAIN_ITEM)
+    waitfanfare
+    setflag(FLAG_RECEIVED_RUNNING_SHOES)
+    setflag(FLAG_SYS_B_DASH)
+    msgbox(format("Recieved the Running Shoes"))
+    waitmessage
+    applymovement(1, moves(walk_up * 3, face_left))
+    waitmovement(0)
+    setvar(VAR_MOONCREST_INTRO_STATE, 7)
+    releaseall
+}
+
+script MooncrestTown_Player_House_TalkToMom{
+    lockall
+    applymovement(1, moves(face_player))
+    waitmovement(0)
+    if(flag(FLAG_SYS_POKEMON_GET) == TRUE){
+        msgbox(format("You look a little tired. Would you like to take a quick rest?"), MSGBOX_YESNO)
+        if(var(VAR_RESULT) == YES){
+
+        }
+        waitmessage
+    }
+    if(flag(FLAG_RIVAL_LEFT_FOR_CRESTFALL_CAVE) == FALSE){
+        msgbox(format("Have you gone to talk to Brendan yet?"))
+        waitmessage
+    }
+    elif(flag(FLAG_DEFEATED_RIVAL_CRESTFALL_CAVE) == TRUE){
+        msgbox(format("I heard you beat Brendan in your first trainer battle. I'm so proud of you honey."))
+        waitmessage
+    }
+    applymovement(1, moves(face_left))
+    releaseall
+}

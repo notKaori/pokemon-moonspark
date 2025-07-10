@@ -1,0 +1,94 @@
+mapscripts MooncrestTown_Rivals_House_MapScripts{
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_MOONCREST_HOUSES_STATE_RIVAL, 1: MooncrestTown_Rivals_House_EventScript_LookingForYou
+    ]
+}
+
+script MooncrestTown_Rivals_House_EventScript_LookingForYou{
+	lockall
+	playse(SE_PIN)
+	applymovement(2, Common_Movement_ExclamationMark)
+	waitmovement(0)
+	applymovement(2, Common_Movement_Delay48)
+	waitmovement(0)
+	applymovement(LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight)
+	applymovement(2, moves(walk_down * 3, walk_left))
+	waitmovement(0)
+	msgbox(MooncrestTown_Rivals_House_OhYoureTheNewNeighbor)
+    waitmessage
+	setflag(FLAG_MET_RIVAL_MOM)
+	setvar(VAR_MOONCREST_HOUSES_STATE_RIVAL, 2)
+    applymovement(2, moves(walk_right, walk_up * 3, face_left))
+    waitmovement(0)
+	releaseall
+}
+
+
+script MooncrestTown_Rivals_House_EventScript_TalkToMom{
+    lockall
+    if(flag(FLAG_DEFEATED_RIVAL_CRESTFALL_CAVE) == TRUE){
+        msgbox(MooncrestTown_Rivals_House_Mom_Normal_Chatter)   
+    }
+    else{
+        msgbox(MooncrestTown_Rivals_House_Hemlock_Looking)
+    }
+    
+    if(flag(FLAG_RIVAL_LEFT_FOR_CRESTFALL_CAVE) == FALSE){
+        msgbox(MooncrestTown_Rivals_House_Brendans_Room)
+    }
+    releaseall
+}
+
+script MooncrestTown_Rivals_House_EventScript_TalkToBrendan{
+    lockall
+	playse(SE_PIN)
+	applymovement(1, Common_Movement_ExclamationMark)
+	waitmovement(0)
+	applymovement(2, Common_Movement_Delay48)
+	waitmovement(0)
+    msgbox(MooncrestTown_Rivals_House_Greeting_Brendan, MSGBOX_NPC)
+    if(var(VAR_FACING) == DIR_NORTH){
+        applymovement(1, moves(walk_left, walk_down * 2, walk_right * 3, walk_down * 4))
+    }
+    elif(var(VAR_FACING) == DIR_WEST){
+        applymovement(1, moves(walk_down * 2, walk_right * 2, walk_down * 4))
+    }
+    elif(var(VAR_FACING) == DIR_EAST){
+        applymovement(1, moves(walk_down * 2, walk_right * 2, walk_down * 4))
+    }
+	waitmovement(0)
+    removeobject(1)
+    playse(SE_DOOR)
+    setvar(VAR_MOONCREST_HOUSES_STATE_RIVAL, 3)
+    setvar(VAR_MOONCREST_RIVAL_STATE, 3)
+    setflag(FLAG_RIVAL_LEFT_FOR_CRESTFALL_CAVE)
+    releaseall
+}
+
+script MooncrestTown_Rivals_House_EventScript_TalkToSister{
+    msgbox(MooncrestTown_Rivals_House_Sister)
+}
+
+text MooncrestTown_Rivals_House_OhYoureTheNewNeighbor{
+    format("Oh, hello {PLAYER}. Brendan was looking for you. He should be in his room")
+}
+
+text MooncrestTown_Rivals_House_Hemlock_Looking{
+    format("Brendan went off to explore Crestfall Cave, but my wife was looking for you too.")
+}
+
+text MooncrestTown_Rivals_House_Brendans_Room{
+    format("Brendan is in his room")
+}
+
+text MooncrestTown_Rivals_House_Mom_Normal_Chatter{
+    format("Its good to see you {PLAYER}. I hope you and Brendan are having a good time on your adventures")
+}
+
+text MooncrestTown_Rivals_House_Sister{
+    format("I can't wait til I can get my own pokemon")
+}
+
+text MooncrestTown_Rivals_House_Greeting_Brendan{
+    format("Oh! You surprised me. Sorry, I was just organizing my boxes. My mom is in her lab, she has a gift for you.\N … … … … … … … … …\p Oh, no my other mom, the Professor. I have some stuff to do so I'll see you later.\N Come meet me in Crestfall Cave after you talk to the Professor")
+}

@@ -1,0 +1,4 @@
+raw `
+CrestfallCave_MapScripts::
+	.byte 0
+`

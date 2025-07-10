@@ -55,17 +55,19 @@ static void PacifidlogBridgePerStepCallback(u8);
 static void SootopolisGymIcePerStepCallback(u8);
 static void CrackedFloorPerStepCallback(u8);
 static void Task_MuddySlope(u8);
+static void CrestfallCaveWeakEarthPerStepCallback(u8);
 
 static const TaskFunc sPerStepCallbacks[] =
 {
-    [STEP_CB_DUMMY]             = DummyPerStepCallback,
-    [STEP_CB_ASH]               = AshGrassPerStepCallback,
-    [STEP_CB_FORTREE_BRIDGE]    = FortreeBridgePerStepCallback,
-    [STEP_CB_PACIFIDLOG_BRIDGE] = PacifidlogBridgePerStepCallback,
-    [STEP_CB_SOOTOPOLIS_ICE]    = SootopolisGymIcePerStepCallback,
-    [STEP_CB_TRUCK]             = EndTruckSequence,
-    [STEP_CB_SECRET_BASE]       = SecretBasePerStepCallback,
-    [STEP_CB_CRACKED_FLOOR]     = CrackedFloorPerStepCallback
+    [STEP_CB_DUMMY]                = DummyPerStepCallback,
+    [STEP_CB_ASH]                  = AshGrassPerStepCallback,
+    [STEP_CB_FORTREE_BRIDGE]       = FortreeBridgePerStepCallback,
+    [STEP_CB_PACIFIDLOG_BRIDGE]    = PacifidlogBridgePerStepCallback,
+    [STEP_CB_SOOTOPOLIS_ICE]       = SootopolisGymIcePerStepCallback,
+    [STEP_CB_TRUCK]                = EndTruckSequence,
+    [STEP_CB_SECRET_BASE]          = SecretBasePerStepCallback,
+    [STEP_CB_CRACKED_FLOOR]        = CrackedFloorPerStepCallback,
+    [STEP_CB_CRESTFALL_CAVE_EARTH] = CrestfallCaveWeakEarthPerStepCallback
 };
 
 // Each array has 4 pairs of data, each pair representing two metatiles of a log and their relative position.
@@ -953,5 +955,90 @@ static void Task_MuddySlope(u8 taskId)
             data[i + SLOPE_Y] -= cameraOffsetY;
             SetMuddySlopeMetatile(&data[i + SLOPE_TIME], data[i + SLOPE_X], data[i + SLOPE_Y]);
         }
+    }
+}
+#define tState data[1]
+#define tPrevX data[2]
+#define tPrevY data[3]
+#define tIceX  data[4]
+#define tIceY  data[5]
+#define tDelay data[6]
+
+static void CrestfallCaveWeakEarthPerStepCallback(u8 taskId)
+{
+    s16 x, y;
+    u16 tileBehavior;
+    u16 *iceStepCount;
+    s16 *data = gTasks[taskId].data;
+    switch (tState)
+    {
+    case 0:
+        PlayerGetDestCoords(&x, &y);
+        tPrevX = x;
+        tPrevY = y;
+        tState = 1;
+        break;
+    case 1:
+        PlayerGetDestCoords(&x, &y);
+        // End if player hasn't moved
+        if (x == tPrevX && y == tPrevY)
+            return;
+
+        tPrevX = x;
+        tPrevY = y;
+        tileBehavior = MapGridGetMetatileBehaviorAt(x, y);
+        iceStepCount = GetVarPointer(VAR_ICE_STEP_COUNT);
+        if (MetatileBehavior_IsThinIce(tileBehavior) == TRUE)
+        {
+            // Thin ice, set it to cracked ice
+            (*iceStepCount)++;
+            tDelay = 4;
+            tState = 2;
+            tIceX = x;
+            tIceY = y;
+        }
+        else if (MetatileBehavior_IsCrackedIce(tileBehavior) == TRUE)
+        {
+            // Cracked ice, set it to broken ice
+            *iceStepCount = 0;
+            tDelay = 4;
+            tState = 3;
+            tIceX = x;
+            tIceY = y;
+        }
+        break;
+    case 2:
+        if (tDelay != 0)
+        {
+            tDelay--;
+        }
+        else
+        {
+            // Crack ice
+            x = tIceX;
+            y = tIceY;
+            PlaySE(SE_ICE_CRACK);
+            MapGridSetMetatileIdAt(x, y, METATILE_SootopolisGym_Ice_Cracked);
+            CurrentMapDrawMetatileAt(x, y);
+            MarkIcePuzzleCoordVisited(x - MAP_OFFSET, y - MAP_OFFSET);
+            tState = 1;
+        }
+        break;
+    case 3:
+        if (tDelay != 0)
+        {
+            tDelay--;
+        }
+        else
+        {
+            // Break ice
+            x = tIceX;
+            y = tIceY;
+            PlaySE(SE_ICE_BREAK);
+            MapGridSetMetatileIdAt(x, y, METATILE_SootopolisGym_Ice_Broken);
+            CurrentMapDrawMetatileAt(x, y);
+            tState = 1;
+        }
+        break;
     }
 }

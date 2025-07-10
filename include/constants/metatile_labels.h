@@ -357,6 +357,22 @@
 #define METATILE_MeteorFalls_CaveEntrance_Right   0x24F
 #define METATILE_MeteorFalls_CaveEntrance_Top     0x246
 
+// gTileset_Mooncrest
+#define METATILE_Mooncrest_AshField                  0x218
+#define METATILE_Mooncrest_AshGrass                  0x20A
+#define METATILE_Mooncrest_BrownCaveEntrance_Bottom  0x261
+#define METATILE_Mooncrest_BrownCaveEntrance_Top     0x259
+#define METATILE_Mooncrest_BrownCaveIndent           0x208
+#define METATILE_Mooncrest_BrownCaveOpen             0x210
+#define METATILE_Mooncrest_BrownRockWall             0x265
+#define METATILE_Mooncrest_Door_BattleTent           0x36C
+#define METATILE_Mooncrest_Door_DarkRoof             0x2F7
+#define METATILE_Mooncrest_Door_LightRoof            0x2A5
+#define METATILE_Mooncrest_NormalGrass               0x212
+#define METATILE_Mooncrest_RedCaveEntrance_Bottom    0x34F
+#define METATILE_Mooncrest_RedCaveEntrance_Top       0x347
+#define METATILE_Mooncrest_RedRockWall               0x269
+
 // gTileset_Mossdeep
 #define METATILE_Mossdeep_Door              0x2A1
 #define METATILE_Mossdeep_Door_SpaceCenter  0x2ED

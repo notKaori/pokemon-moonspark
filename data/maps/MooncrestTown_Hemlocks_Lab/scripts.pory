@@ -1,0 +1,246 @@
+mapscripts MooncrestTown_Hemlocks_Lab_MapScripts{
+    MAP_SCRIPT_ON_TRANSITION: MooncrestTown_Hemlocks_Lab_Handle_Rival
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_HEMLOCK_LAB_STATE, 0: MooncrestTown_Hemlocks_Lab_MeetHemlock
+        VAR_HEMLOCK_LAB_STATE, 3: MooncrestTown_Hemlocks_Lab_GetPokedex
+    ]
+}
+
+script MooncrestTown_Hemlocks_Lab_GetPokedex{
+    lockall
+    releaseall
+}
+
+script MooncrestTown_Hemlocks_Lab_Handle_Rival{
+    if(flag(FLAG_DEFEATED_RIVAL_CRESTFALL_CAVE) == TRUE){
+        clearflag(FLAG_HIDE_BRENDAN_AT_LAB)
+    }
+    elif(flag(FLAG_ADVENTURE_STARTED) == TRUE){
+        setflag(FLAG_HIDE_BRENDAN_AT_LAB)
+    }
+    else{
+        setflag(FLAG_HIDE_BRENDAN_AT_LAB)
+    }
+}
+
+script MooncrestTown_Hemlocks_Lab_MeetHemlock{
+    if(flag(FLAG_RIVAL_LEFT_FOR_CRESTFALL_CAVE)){
+        lockall
+        playse(SE_PIN)
+        applymovement(4, Common_Movement_ExclamationMark)
+        waitmovement(0)
+        applymovement(4, Common_Movement_Delay48)
+        waitmovement(0)
+        applymovement(LOCALID_PLAYER, moves(walk_right * 2, walk_up * 7))
+        msgbox(MooncrestTown_HemlocksLab_DeserveStarter)
+        waitmessage
+        setvar(VAR_HEMLOCK_LAB_STATE, 2)
+        setflag(FLAG_MET_HEMLOCK)
+        releaseall
+    }
+}
+
+script MooncrestTown_Hemlocks_Lab_TalkToHemlock{
+    lockall
+    if(flag(FLAG_RIVAL_LEFT_FOR_CRESTFALL_CAVE) == TRUE && flag(FLAG_SYS_POKEMON_GET) == FALSE){
+        call(MooncrestTown_Hemlocks_Lab_Starter_Generation)
+    }
+    elif(flag(FLAG_DEFEATED_RIVAL_CRESTFALL_CAVE) == TRUE && flag(FLAG_SYS_POKEDEX_GET) == FALSE){
+        call(MooncrestTown_Hemlocks_Lab_Give_Dex)
+    }
+    releaseall
+}
+// FLAG_SYS_NATIONAL_DEX
+script MooncrestTown_Hemlocks_Lab_Starter_Generation{
+    message(format("Would you like to choose the generation of starter you get?"))
+    multichoice(25, 5, MULTI_STARTER_CHOICE, 0)
+}
+
+script MooncrestTown_Hemlocks_Lab_Give_Dex{
+
+}
+
+script MooncrestTown_Hemlocks_Lab_EventScript_Starter1{
+    lockall
+    if(flag(FLAG_STARTER_GIVEN) == TRUE){
+        msgbox("You already got a Starter")
+    }
+    else {
+        showmonpic(SPECIES_OSHAWOTT, 10,3)
+        msgbox("Do you want to choose Oshawott?", MSGBOX_YESNO)
+        if(var(VAR_RESULT) == YES){
+            setflag(FLAG_SYS_POKEMON_GET)
+            givemon(SPECIES_OSHAWOTT, 5)
+            if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+                playfanfare(MUS_OBTAIN_ITEM)
+                msgbox("Received Oshawott")
+                removeobject(3)
+                setflag(FLAG_WATER_STARTER)
+                setvar(VAR_STARTER_MON, 2)
+    // setflag(FLAG_STARTER_GIVEN)
+                call(NicknamePartyMon)
+            }
+            elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+                playfanfare(MUS_OBTAIN_ITEM)
+                msgbox("Received Oshawott")
+                removeobject(3)
+                setflag(FLAG_WATER_STARTER)
+                setvar(VAR_STARTER_MON, 2)
+    // setflag(FLAG_STARTER_GIVEN)
+                call(NicknameBoxMon)
+            }
+            else{
+                hidemonpic
+                msgbox("No More Room")
+            }
+        }
+        else{
+            hidemonpic
+            msgbox(MooncrestTown_Hemlocks_Lab_NotChosen)
+        }
+        waitmessage
+    }
+    releaseall
+}
+
+script MooncrestTown_Hemlocks_Lab_EventScript_Starter2{
+    lockall
+    if(flag(FLAG_STARTER_GIVEN) == TRUE){
+        msgbox("You already got a Starter")
+    }
+    else {
+        showmonpic(SPECIES_FENNEKIN, 10,3)
+        msgbox("Do you want to choose Fennekin?", MSGBOX_YESNO)
+        if(var(VAR_RESULT) == YES){
+            setflag(FLAG_SYS_POKEMON_GET)
+            givemon(SPECIES_FENNEKIN, 5)
+            if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+                playfanfare(MUS_OBTAIN_ITEM)
+                msgbox("Received Fennekin")
+                removeobject(2)
+                setflag(FLAG_FIRE_STARTER)
+                setvar(VAR_STARTER_MON, 1)
+    // setflag(FLAG_STARTER_GIVEN)
+                call(NicknamePartyMon)
+            }
+            elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+                playfanfare(MUS_OBTAIN_ITEM)
+                msgbox("Received Fennekin")
+                removeobject(2)
+                setflag(FLAG_FIRE_STARTER)
+                setvar(VAR_STARTER_MON, 1)
+    // setflag(FLAG_STARTER_GIVEN)
+                call(NicknameBoxMon)
+            }
+            else{
+                hidemonpic
+                msgbox("No More Room")
+
+            }
+        }
+        else{
+            hidemonpic
+            msgbox(MooncrestTown_Hemlocks_Lab_NotChosen)
+        }
+        waitmessage
+    }
+    releaseall
+}
+
+script MooncrestTown_Hemlocks_Lab_EventScript_Starter3{
+    lockall
+    if(flag(FLAG_STARTER_GIVEN) == TRUE){
+        msgbox("You already got a Starter")
+    }
+    else {
+        showmonpic(SPECIES_SPRIGATITO, 10,3)
+        msgbox("Do you want to choose Sprigatito?", MSGBOX_YESNO)
+        if(var(VAR_RESULT) == YES){
+            setflag(FLAG_SYS_POKEMON_GET)
+            givemon(SPECIES_SPRIGATITO, 5)
+            if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+                playfanfare(MUS_OBTAIN_ITEM)
+                msgbox("Received Sprigatito")
+                removeobject(1)
+                setflag(FLAG_GRASS_STARTER)
+                setvar(VAR_STARTER_MON, 0)
+                setvar(VAR_MOONCREST_TOWN_STATE, 2)
+    // setflag(FLAG_STARTER_GIVEN)
+                call(NicknamePartyMon)
+            }
+            elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+                playfanfare(MUS_OBTAIN_ITEM)
+                msgbox("Received Sprigatito")
+                removeobject(1)
+                setflag(FLAG_GRASS_STARTER)
+                setvar(VAR_STARTER_MON, 0)
+                setvar(VAR_MOONCREST_TOWN_STATE, 2)
+    // setflag(FLAG_STARTER_GIVEN)
+                call(NicknameBoxMon)
+            }
+            else{
+                hidemonpic
+                msgbox("No More Room")
+                waitmessage
+            }
+        }
+        else{
+            hidemonpic
+            msgbox(MooncrestTown_Hemlocks_Lab_NotChosen)
+            waitmessage
+        }
+    }
+    
+    releaseall
+}
+
+// script PostStarterSelectionDialog{
+//     if(flag(FLAG_WATER_STARTER) == TRUE){
+//         applymovement(4,moves(face_left))
+//     }
+//     elif(flag(FLAG_FIRE_STARTER) == TRUE){
+//         applymovement(4, moves(walk_left))
+//     }
+//     elif(flag(FLAG_GRASS_STARTER) == TRUE){
+//         applymovement(4, moves(walk_left * 2))
+//     }
+//     waitmovement(0)
+//     setvar(VAR_MOONCREST_TOWN_STATE, 2)
+//     setvar(VAR_HEMLOCK_LAB_STATE, 3)
+//     setflag(FLAG_SYS_POKEMON_GET)
+//     msgbox(ReceivedStarter)
+//     waitmessage
+//     releaseall
+// }
+
+script NicknamePartyMon{
+    msgbox("Give it a nickname?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        call(Common_EventScript_GetGiftMonPartySlot)
+        call(Common_EventScript_NameReceivedPartyMon)
+    }
+    hidemonpic
+}
+
+script NicknameBoxMon{
+    msgbox("Give it a nickname?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        call(Common_EventScript_NameReceivedPartyMon)
+    }
+    call(Common_EventScript_TransferredToPC)
+    hidemonpic
+    setvar(VAR_MOONCREST_TOWN_STATE, 2)
+    // setflag(FLAG_STARTER_GIVEN)
+}
+
+text MooncrestTown_Hemlocks_Lab_NotChosen{
+    "You did not choose the pokemon"
+}
+
+text MooncrestTown_HemlocksLab_DeserveStarter{
+    format("Ah, hello there {PLAYER}! I was talking to your mom and we think its about time you get your own pokemon. You can choose from one that's on the table, or let me know if you want different options")
+}
+
+text ReceivedStarter{
+    format("That's a great choice. I'm sure you two will get along swimmingly. Why don't you go see what Brendan is up to, I think he went to check on Crestfall Cave for me.")
+}

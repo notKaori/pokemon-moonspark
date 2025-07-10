@@ -70,7 +70,7 @@ bool32 IsLastHealLocationPlayerHouse()
     if (IsLastHealLocation(HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE)
         || IsLastHealLocation(HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F)
         || IsLastHealLocation(HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE)
-        || IsLastHealLocation(HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F))
+        || IsLastHealLocation(HEAL_LOCATION_MOONCREST_TOWN_PLAYER_HOUSE))
         return TRUE;
 
     return FALSE;

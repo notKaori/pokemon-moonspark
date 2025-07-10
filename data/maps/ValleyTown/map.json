@@ -1,0 +1,26 @@
+{
+  "id": "MAP_VALLEY_TOWN",
+  "name": "ValleyTown",
+  "layout": "LAYOUT_VALLEY_TOWN",
+  "music": "MUS_OLDALE",
+  "region_map_section": "MAPSEC_VALLEY_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_TOWN",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_ROUTE_A1",
+      "offset": -7,
+      "direction": "down"
+    }
+  ],
+  "object_events": [],
+  "warp_events": [],
+  "coord_events": [],
+  "bg_events": []
+}

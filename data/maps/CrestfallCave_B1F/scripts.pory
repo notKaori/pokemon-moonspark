@@ -1,0 +1,89 @@
+raw `
+CrestfallCave_B1F_MapScripts::
+	map_script MAP_SCRIPT_ON_RESUME, CrestfallCave_B1F_OnResume
+	.byte 0
+
+CrestfallCave_B1F_OnResume:
+	setstepcallback STEP_CB_CRESTFALL_CAVE_EARTH
+	end
+
+CrestfallCave_B1F_EventScript_FallThroughIce::
+	lockall
+	delay 20
+	applymovement LOCALID_PLAYER, CrestfallCave_B1F_Movement_FallThroughIce
+	waitmovement 0
+	playse SE_FALL
+	delay 60
+	warphole MAP_CRESTFALL_CAVE_B2F
+	waitstate
+	end
+
+	
+CrestfallCave_B1F_Movement_FallThroughIce:
+	set_invisible
+	step_end
+
+`
+
+script CrestfallCave_B1F_EventScript_Rival{
+	lockall
+	msgbox(CrestfallCave_B1F_Text_BrendanCrestfallCavePokemon, MSGBOX_DEFAULT)
+	playbgm(MUS_ENCOUNTER_BRENDAN, TRUE)
+	applymovement(1, Common_Movement_ExclamationMark)
+	waitmovement(0)
+	applymovement(1, Common_Movement_FacePlayer)
+	waitmovement(0)
+	applymovement(1, Common_Movement_Delay48)
+	waitmovement(0)
+	msgbox(CrestfallCave_B1F_Text_BrendanLetsBattle, MSGBOX_DEFAULT)
+	switch(var(VAR_STARTER_MON)){
+		case 0: call(CrestfallCave_B1F_EventScript_StartBrendanBattleTreecko)
+		case 1: call(CrestfallCave_B1F_EventScript_StartBrendanBattleTorchic)
+		case 2: call(CrestfallCave_B1F_EventScript_StartBrendanBattleMudkip)
+	}
+	releaseall
+}
+
+
+script CrestfallCave_B1F_EventScript_StartBrendanBattleTreecko{
+	trainerbattle_no_intro(TRAINER_BRENDAN_CRESTFALL_CAVE_B1F_TREECKO, CrestfallCave_B1F_Text_BrendanDefeated)
+	call(CrestfallCave_B1F_EventScript_AfterBrendanBattle)
+}
+	
+
+script CrestfallCave_B1F_EventScript_StartBrendanBattleTorchic{
+	trainerbattle_no_intro(TRAINER_BRENDAN_CRESTFALL_CAVE_B1F_TORCHIC, CrestfallCave_B1F_Text_BrendanDefeated)
+	call(CrestfallCave_B1F_EventScript_AfterBrendanBattle)
+}
+	
+
+script CrestfallCave_B1F_EventScript_StartBrendanBattleMudkip{
+	trainerbattle_no_intro(TRAINER_BRENDAN_CRESTFALL_CAVE_B1F_MUDKIP, CrestfallCave_B1F_Text_BrendanDefeated)
+	call(CrestfallCave_B1F_EventScript_AfterBrendanBattle)
+}
+	
+script CrestfallCave_B1F_EventScript_AfterBrendanBattle{
+	msgbox(CrestfallCave_B1F_Text_BrendanTimeToHeadBack, MSGBOX_DEFAULT)
+	applymovement(1, moves(walk_right * 4, walk_down * 7))
+	waitmovement(0)
+	removeobject(1)
+	setvar(VAR_HEMLOCK_LAB_STATE, 4)
+	setflag(FLAG_DEFEATED_RIVAL_CRESTFALL_CAVE)
+	clearflag(FLAG_HIDE_BRENDAN_AT_LAB)
+}
+
+text CrestfallCave_B1F_Text_BrendanDefeated{
+	format("You're better than I thought you'd be.")
+}
+
+text CrestfallCave_B1F_Text_BrendanTimeToHeadBack{
+	format("I can tell you're going to be a great trainer.\N Mom was talking about having another gift for you, why don't you meet me back at the Lab.")
+}
+
+text CrestfallCave_B1F_Text_BrendanCrestfallCavePokemon{
+	format("Interesting, so different Pokemon live on each floor...")
+}
+
+text CrestfallCave_B1F_Text_BrendanLetsBattle{
+	format("If you're here that means mom gave you a Pokemon, eh?\N Well why don't we gauge how good of a Trainer you are.")
+}
