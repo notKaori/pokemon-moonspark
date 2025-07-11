@@ -6,8 +6,11 @@ mapscripts MooncrestTown_MapScripts{
 }
 
 script MooncrestTown_On_Frame_Table{
-    if (flag(FLAG_SYS_POKEMON_GET)){
+    if (flag(FLAG_SYS_POKEMON_GET) == TRUE && flag(FLAG_SYS_POKEDEX_GET) == FALSE){
         setvar(VAR_HEMLOCK_LAB_STATE, 3)
+    }
+    elif (flag(FLAG_SYS_POKEDEX_GET) == TRUE){
+        setvar(VAR_HEMLOCK_LAB_DEX, 1)
     }
 }
 
@@ -44,14 +47,18 @@ script MooncrestTown_Stay_Safe{
     }
 }
 
+script MooncrestTown_Need_Dex{
+    lockall
+    msgbox("You need the Pokedex first.")
+    applymovement(LOCALID_PLAYER, moves(lock_facing_direction, walk_right * 2, unlock_facing_direction))
+    waitmessage
+    waitmovement(0)
+    releaseall
+}
+
 script MooncrestTown_RivalHouseSign {
     lockall
-    checkplayergender
-    if (var(VAR_RESULT) == MALE) {
-        msgbox("It's May's house.")
-    } else {
-        msgbox("It's Brendan's house.")
-    }
+    msgbox("It's Brendan's house.")
     releaseall
 }
 

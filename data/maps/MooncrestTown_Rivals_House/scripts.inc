@@ -85,53 +85,51 @@ MooncrestTown_Rivals_House_EventScript_TalkToBrendan::
 # 48 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	waitmovement 0
 # 49 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
-	faceplayer
+	msgbox MooncrestTown_Rivals_House_Greeting_Brendan, MSGBOX_NPC
 # 50 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
-	msgbox MooncrestTown_Rivals_House_Greeting_Brendan
-# 51 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	compare VAR_FACING, DIR_NORTH
 	goto_if_eq MooncrestTown_Rivals_House_EventScript_TalkToBrendan_2
-# 54 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 53 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	compare VAR_FACING, DIR_WEST
 	goto_if_eq MooncrestTown_Rivals_House_EventScript_TalkToBrendan_3
-# 57 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 56 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	compare VAR_FACING, DIR_EAST
 	goto_if_eq MooncrestTown_Rivals_House_EventScript_TalkToBrendan_4
 MooncrestTown_Rivals_House_EventScript_TalkToBrendan_1:
-# 60 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 59 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	waitmovement 0
-# 61 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 60 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	removeobject 1
-# 62 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 61 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	playse SE_DOOR
-# 63 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 62 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	setvar VAR_MOONCREST_HOUSES_STATE_RIVAL, 3
-# 64 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 63 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	setvar VAR_MOONCREST_RIVAL_STATE, 3
-# 65 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 64 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	setflag FLAG_RIVAL_LEFT_FOR_CRESTFALL_CAVE
-# 66 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 65 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	releaseall
 	return
 
 MooncrestTown_Rivals_House_EventScript_TalkToBrendan_2:
-# 52 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 51 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	applymovement 1, MooncrestTown_Rivals_House_EventScript_TalkToBrendan_Movement_0
 	goto MooncrestTown_Rivals_House_EventScript_TalkToBrendan_1
 
 MooncrestTown_Rivals_House_EventScript_TalkToBrendan_3:
-# 55 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 54 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	applymovement 1, MooncrestTown_Rivals_House_EventScript_TalkToBrendan_Movement_1
 	goto MooncrestTown_Rivals_House_EventScript_TalkToBrendan_1
 
 MooncrestTown_Rivals_House_EventScript_TalkToBrendan_4:
-# 58 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 57 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	applymovement 1, MooncrestTown_Rivals_House_EventScript_TalkToBrendan_Movement_1
 	goto MooncrestTown_Rivals_House_EventScript_TalkToBrendan_1
 
 
 MooncrestTown_Rivals_House_EventScript_TalkToSister::
-# 70 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 69 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	msgbox MooncrestTown_Rivals_House_Sister
 	return
 
@@ -162,78 +160,78 @@ MooncrestTown_Rivals_House_EventScript_LookingForYou_Movement_1:
 	face_left
 	step_end
 
-# 52 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 51 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 MooncrestTown_Rivals_House_EventScript_TalkToBrendan_Movement_0:
-# 52 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 51 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	walk_left
-# 52 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 51 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	walk_down
-# 52 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 51 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	walk_down
-# 52 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 51 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	walk_right
-# 52 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 51 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	walk_right
-# 52 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 51 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	walk_right
-# 52 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 51 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	walk_down
-# 52 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 51 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	walk_down
-# 52 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 51 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	walk_down
-# 52 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 51 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	walk_down
 	step_end
 
-# 55 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 54 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 MooncrestTown_Rivals_House_EventScript_TalkToBrendan_Movement_1:
-# 55 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 54 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	walk_down
-# 55 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 54 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	walk_down
-# 55 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 54 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	walk_right
-# 55 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 54 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	walk_right
-# 55 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 54 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	walk_down
-# 55 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 54 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	walk_down
-# 55 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 54 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	walk_down
-# 55 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 54 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	walk_down
 	step_end
 
 MooncrestTown_Rivals_House_OhYoureTheNewNeighbor::
-# 73 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 72 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	.string "Oh, hello {PLAYER}. Brendan was\n"
 	.string "looking for you. He should be in his room$"
 
 MooncrestTown_Rivals_House_Hemlock_Looking::
-# 77 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 76 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	.string "Brendan went off to explore Crestfall\n"
 	.string "Cave, but my wife was looking for you\l"
 	.string "too.$"
 
 MooncrestTown_Rivals_House_Brendans_Room::
-# 81 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 80 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	.string "Brendan is in his room$"
 
 MooncrestTown_Rivals_House_Mom_Normal_Chatter::
-# 85 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 84 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	.string "Its good to see you {PLAYER}. I hope\n"
 	.string "you and Brendan are having a good time\l"
 	.string "on your adventures$"
 
 MooncrestTown_Rivals_House_Sister::
-# 89 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 88 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	.string "I can't wait til I can get my own\n"
 	.string "pokemon$"
 
 MooncrestTown_Rivals_House_Greeting_Brendan::
-# 93 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
+# 92 "data/maps/MooncrestTown_Rivals_House/scripts.pory"
 	.string "Oh! You surprised me. Sorry, I was just\n"
 	.string "organizing my boxes. My mom is in her\l"
 	.string "lab, she has a gift for you.\l"

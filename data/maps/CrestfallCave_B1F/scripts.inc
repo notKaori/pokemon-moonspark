@@ -55,15 +55,15 @@ CrestfallCave_B1F_EventScript_Rival::
 # 31 "data/maps/CrestfallCave_B1F/scripts.pory"
 	playbgm MUS_ENCOUNTER_BRENDAN, TRUE
 # 32 "data/maps/CrestfallCave_B1F/scripts.pory"
-	applymovement 0, Common_Movement_ExclamationMark
+	applymovement 1, Common_Movement_ExclamationMark
 # 33 "data/maps/CrestfallCave_B1F/scripts.pory"
 	waitmovement 0
 # 34 "data/maps/CrestfallCave_B1F/scripts.pory"
-	applymovement 0, Common_Movement_FacePlayer
+	applymovement 1, Common_Movement_FacePlayer
 # 35 "data/maps/CrestfallCave_B1F/scripts.pory"
 	waitmovement 0
 # 36 "data/maps/CrestfallCave_B1F/scripts.pory"
-	applymovement 0, Common_Movement_Delay48
+	applymovement 1, Common_Movement_Delay48
 # 37 "data/maps/CrestfallCave_B1F/scripts.pory"
 	waitmovement 0
 # 38 "data/maps/CrestfallCave_B1F/scripts.pory"
@@ -127,12 +127,14 @@ CrestfallCave_B1F_EventScript_AfterBrendanBattle::
 # 67 "data/maps/CrestfallCave_B1F/scripts.pory"
 	applymovement 1, CrestfallCave_B1F_EventScript_AfterBrendanBattle_Movement_0
 # 68 "data/maps/CrestfallCave_B1F/scripts.pory"
-	removeobject 1
+	waitmovement 0
 # 69 "data/maps/CrestfallCave_B1F/scripts.pory"
-	setvar VAR_HEMLOCK_LAB_STATE, 4
+	removeobject 1
 # 70 "data/maps/CrestfallCave_B1F/scripts.pory"
-	setflag FLAG_DEFEATED_RIVAL_CRESTFALL_CAVE
+	setvar VAR_HEMLOCK_LAB_STATE, 4
 # 71 "data/maps/CrestfallCave_B1F/scripts.pory"
+	setflag FLAG_DEFEATED_RIVAL_CRESTFALL_CAVE
+# 72 "data/maps/CrestfallCave_B1F/scripts.pory"
 	clearflag FLAG_HIDE_BRENDAN_AT_LAB
 	return
 
@@ -164,11 +166,11 @@ CrestfallCave_B1F_EventScript_AfterBrendanBattle_Movement_0:
 	step_end
 
 CrestfallCave_B1F_Text_BrendanDefeated::
-# 74 "data/maps/CrestfallCave_B1F/scripts.pory"
+# 75 "data/maps/CrestfallCave_B1F/scripts.pory"
 	.string "You're better than I thought you'd be.$"
 
 CrestfallCave_B1F_Text_BrendanTimeToHeadBack::
-# 78 "data/maps/CrestfallCave_B1F/scripts.pory"
+# 79 "data/maps/CrestfallCave_B1F/scripts.pory"
 	.string "I can tell you're going to be a great\n"
 	.string "trainer.\l"
 	.string "Mom was talking about having another\l"
@@ -176,12 +178,12 @@ CrestfallCave_B1F_Text_BrendanTimeToHeadBack::
 	.string "at the Lab.$"
 
 CrestfallCave_B1F_Text_BrendanCrestfallCavePokemon::
-# 82 "data/maps/CrestfallCave_B1F/scripts.pory"
+# 83 "data/maps/CrestfallCave_B1F/scripts.pory"
 	.string "Interesting, so different Pokemon live\n"
 	.string "on each floor...$"
 
 CrestfallCave_B1F_Text_BrendanLetsBattle::
-# 86 "data/maps/CrestfallCave_B1F/scripts.pory"
+# 87 "data/maps/CrestfallCave_B1F/scripts.pory"
 	.string "If you're here that means mom gave you\n"
 	.string "a Pokemon, eh?\l"
 	.string "Well why don't we gauge how good of a\l"

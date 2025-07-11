@@ -68,311 +68,402 @@ MooncrestTown_Hemlocks_Lab_MeetHemlock_1:
 # 37 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	setvar VAR_HEMLOCK_LAB_STATE, 2
 # 38 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
-	setflag FLAG_MET_HEMLOCK
+	setvar VAR_STARTER_REGION, 9
 # 39 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	setflag FLAG_MET_HEMLOCK
+# 40 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	releaseall
 	return
 
 
 MooncrestTown_Hemlocks_Lab_TalkToHemlock::
-# 44 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
-	lockall
 # 45 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
-	goto_if_set FLAG_RIVAL_LEFT_FOR_CRESTFALL_CAVE, MooncrestTown_Hemlocks_Lab_TalkToHemlock_3
+	lockall
+# 46 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	goto_if_set FLAG_RIVAL_LEFT_FOR_CRESTFALL_CAVE, MooncrestTown_Hemlocks_Lab_TalkToHemlock_7
+MooncrestTown_Hemlocks_Lab_TalkToHemlock_5:
+# 49 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	goto_if_set FLAG_DEFEATED_RIVAL_CRESTFALL_CAVE, MooncrestTown_Hemlocks_Lab_TalkToHemlock_4
 MooncrestTown_Hemlocks_Lab_TalkToHemlock_1:
-# 48 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 52 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	releaseall
 	return
 
 MooncrestTown_Hemlocks_Lab_TalkToHemlock_2:
-# 46 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 47 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	call MooncrestTown_Hemlocks_Lab_Starter_Generation
 	goto MooncrestTown_Hemlocks_Lab_TalkToHemlock_1
 
 MooncrestTown_Hemlocks_Lab_TalkToHemlock_3:
-# 45 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
-	goto_if_unset FLAG_SYS_POKEMON_GET, MooncrestTown_Hemlocks_Lab_TalkToHemlock_2
+# 50 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	call MooncrestTown_Hemlocks_Lab_Give_Dex
 	goto MooncrestTown_Hemlocks_Lab_TalkToHemlock_1
+
+MooncrestTown_Hemlocks_Lab_TalkToHemlock_4:
+# 49 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	goto_if_unset FLAG_SYS_POKEDEX_GET, MooncrestTown_Hemlocks_Lab_TalkToHemlock_3
+	goto MooncrestTown_Hemlocks_Lab_TalkToHemlock_1
+
+MooncrestTown_Hemlocks_Lab_TalkToHemlock_7:
+# 46 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	goto_if_unset FLAG_SYS_POKEMON_GET, MooncrestTown_Hemlocks_Lab_TalkToHemlock_2
+	goto MooncrestTown_Hemlocks_Lab_TalkToHemlock_5
 
 
 MooncrestTown_Hemlocks_Lab_Starter_Generation::
-# 52 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
-	msgbox MooncrestTown_Hemlocks_Lab_Starter_Generation_Text_0, MSGBOX_YESNO
+# 56 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	message MooncrestTown_Hemlocks_Lab_Starter_Generation_Text_0
+# 57 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	dynmultichoice 25, 1, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, 0
+# 58 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	switch VAR_RESULT
+# 59 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	case 0, MooncrestTown_Hemlocks_Lab_Starter_Generation_3
+# 60 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	case 1, MooncrestTown_Hemlocks_Lab_Starter_Generation_4
+# 61 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	case 2, MooncrestTown_Hemlocks_Lab_Starter_Generation_5
+# 62 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	case 3, MooncrestTown_Hemlocks_Lab_Starter_Generation_6
+# 63 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	case 4, MooncrestTown_Hemlocks_Lab_Starter_Generation_7
+# 64 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	case 5, MooncrestTown_Hemlocks_Lab_Starter_Generation_8
+# 65 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	case 6, MooncrestTown_Hemlocks_Lab_Starter_Generation_9
+# 66 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	case 7, MooncrestTown_Hemlocks_Lab_Starter_Generation_10
+# 67 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	case 8, MooncrestTown_Hemlocks_Lab_Starter_Generation_11
+MooncrestTown_Hemlocks_Lab_Starter_Generation_1:
+# 69 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	closemessage
+	return
+
+MooncrestTown_Hemlocks_Lab_Starter_Generation_3:
+# 59 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	setvar VAR_STARTER_REGION, 0
+	goto MooncrestTown_Hemlocks_Lab_Starter_Generation_1
+
+MooncrestTown_Hemlocks_Lab_Starter_Generation_4:
+# 60 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	setvar VAR_STARTER_REGION, 1
+	goto MooncrestTown_Hemlocks_Lab_Starter_Generation_1
+
+MooncrestTown_Hemlocks_Lab_Starter_Generation_5:
+# 61 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	setvar VAR_STARTER_REGION, 2
+	goto MooncrestTown_Hemlocks_Lab_Starter_Generation_1
+
+MooncrestTown_Hemlocks_Lab_Starter_Generation_6:
+# 62 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	setvar VAR_STARTER_REGION, 3
+	goto MooncrestTown_Hemlocks_Lab_Starter_Generation_1
+
+MooncrestTown_Hemlocks_Lab_Starter_Generation_7:
+# 63 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	setvar VAR_STARTER_REGION, 4
+	goto MooncrestTown_Hemlocks_Lab_Starter_Generation_1
+
+MooncrestTown_Hemlocks_Lab_Starter_Generation_8:
+# 64 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	setvar VAR_STARTER_REGION, 5
+	goto MooncrestTown_Hemlocks_Lab_Starter_Generation_1
+
+MooncrestTown_Hemlocks_Lab_Starter_Generation_9:
+# 65 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	setvar VAR_STARTER_REGION, 6
+	goto MooncrestTown_Hemlocks_Lab_Starter_Generation_1
+
+MooncrestTown_Hemlocks_Lab_Starter_Generation_10:
+# 66 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	setvar VAR_STARTER_REGION, 7
+	goto MooncrestTown_Hemlocks_Lab_Starter_Generation_1
+
+MooncrestTown_Hemlocks_Lab_Starter_Generation_11:
+# 67 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	setvar VAR_STARTER_REGION, 8
+	goto MooncrestTown_Hemlocks_Lab_Starter_Generation_1
+
+
+MooncrestTown_Hemlocks_Lab_Give_Dex::
+# 73 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	msgbox MooncrestTown_Hemlocks_Lab_Give_Dex_Text_0, MSGBOX_NPC
 	return
 
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter1::
-# 56 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 77 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	lockall
-# 57 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 78 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	goto_if_set FLAG_STARTER_GIVEN, MooncrestTown_Hemlocks_Lab_EventScript_Starter1_2
-# 61 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 82 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	showmonpic SPECIES_OSHAWOTT, 10, 3
-# 62 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 83 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	msgbox MooncrestTown_Hemlocks_Lab_EventScript_Starter1_Text_1, MSGBOX_YESNO
-# 63 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 84 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq MooncrestTown_Hemlocks_Lab_EventScript_Starter1_6
-# 90 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 111 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	hidemonpic
-# 91 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 112 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	msgbox MooncrestTown_Hemlocks_Lab_NotChosen
 MooncrestTown_Hemlocks_Lab_EventScript_Starter1_5:
-# 93 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 114 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	waitmessage
 MooncrestTown_Hemlocks_Lab_EventScript_Starter1_1:
-# 95 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 116 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	releaseall
 	return
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter1_2:
-# 58 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 79 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	msgbox MooncrestTown_Hemlocks_Lab_EventScript_Starter1_Text_0
 	goto MooncrestTown_Hemlocks_Lab_EventScript_Starter1_1
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter1_6:
-# 64 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 85 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	setflag FLAG_SYS_POKEMON_GET
-# 65 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 86 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	givemon SPECIES_OSHAWOTT, 5
-# 66 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 87 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PARTY
 	goto_if_eq MooncrestTown_Hemlocks_Lab_EventScript_Starter1_9
-# 75 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 96 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PC
 	goto_if_eq MooncrestTown_Hemlocks_Lab_EventScript_Starter1_10
-# 85 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 106 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	hidemonpic
-# 86 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 107 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	msgbox MooncrestTown_Hemlocks_Lab_EventScript_Starter1_Text_3
 	goto MooncrestTown_Hemlocks_Lab_EventScript_Starter1_5
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter1_9:
-# 67 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 88 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	playfanfare MUS_OBTAIN_ITEM
-# 68 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 89 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	msgbox MooncrestTown_Hemlocks_Lab_EventScript_Starter1_Text_2
-# 69 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 90 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	removeobject 3
-# 70 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 91 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	setflag FLAG_WATER_STARTER
-# 71 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 92 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	setvar VAR_STARTER_MON, 2
-# 73 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 94 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	call NicknamePartyMon
 	goto MooncrestTown_Hemlocks_Lab_EventScript_Starter1_5
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter1_10:
-# 76 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 97 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	playfanfare MUS_OBTAIN_ITEM
-# 77 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 98 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	msgbox MooncrestTown_Hemlocks_Lab_EventScript_Starter1_Text_2
-# 78 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 99 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	removeobject 3
-# 79 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 100 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	setflag FLAG_WATER_STARTER
-# 80 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 101 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	setvar VAR_STARTER_MON, 2
-# 82 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 103 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	call NicknameBoxMon
 	goto MooncrestTown_Hemlocks_Lab_EventScript_Starter1_5
 
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter2::
-# 99 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 120 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	lockall
-# 100 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 121 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	goto_if_set FLAG_STARTER_GIVEN, MooncrestTown_Hemlocks_Lab_EventScript_Starter2_2
-# 104 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 125 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	showmonpic SPECIES_FENNEKIN, 10, 3
-# 105 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 126 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	msgbox MooncrestTown_Hemlocks_Lab_EventScript_Starter2_Text_0, MSGBOX_YESNO
-# 106 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 127 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq MooncrestTown_Hemlocks_Lab_EventScript_Starter2_6
-# 134 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 155 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	hidemonpic
-# 135 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 156 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	msgbox MooncrestTown_Hemlocks_Lab_NotChosen
 MooncrestTown_Hemlocks_Lab_EventScript_Starter2_5:
-# 137 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 158 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	waitmessage
 MooncrestTown_Hemlocks_Lab_EventScript_Starter2_1:
-# 139 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 160 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	releaseall
 	return
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter2_2:
-# 101 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 122 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	msgbox MooncrestTown_Hemlocks_Lab_EventScript_Starter1_Text_0
 	goto MooncrestTown_Hemlocks_Lab_EventScript_Starter2_1
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter2_6:
-# 107 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 128 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	setflag FLAG_SYS_POKEMON_GET
-# 108 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 129 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	givemon SPECIES_FENNEKIN, 5
-# 109 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 130 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PARTY
 	goto_if_eq MooncrestTown_Hemlocks_Lab_EventScript_Starter2_9
-# 118 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 139 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PC
 	goto_if_eq MooncrestTown_Hemlocks_Lab_EventScript_Starter2_10
-# 128 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 149 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	hidemonpic
-# 129 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 150 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	msgbox MooncrestTown_Hemlocks_Lab_EventScript_Starter1_Text_3
 	goto MooncrestTown_Hemlocks_Lab_EventScript_Starter2_5
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter2_9:
-# 110 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 131 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	playfanfare MUS_OBTAIN_ITEM
-# 111 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 132 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	msgbox MooncrestTown_Hemlocks_Lab_EventScript_Starter2_Text_1
-# 112 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 133 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	removeobject 2
-# 113 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 134 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	setflag FLAG_FIRE_STARTER
-# 114 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 135 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	setvar VAR_STARTER_MON, 1
-# 116 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 137 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	call NicknamePartyMon
 	goto MooncrestTown_Hemlocks_Lab_EventScript_Starter2_5
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter2_10:
-# 119 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 140 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	playfanfare MUS_OBTAIN_ITEM
-# 120 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 141 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	msgbox MooncrestTown_Hemlocks_Lab_EventScript_Starter2_Text_1
-# 121 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 142 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	removeobject 2
-# 122 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 143 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	setflag FLAG_FIRE_STARTER
-# 123 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 144 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	setvar VAR_STARTER_MON, 1
-# 125 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 146 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	call NicknameBoxMon
 	goto MooncrestTown_Hemlocks_Lab_EventScript_Starter2_5
 
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter3::
-# 143 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 164 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	lockall
-# 144 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 165 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	goto_if_set FLAG_STARTER_GIVEN, MooncrestTown_Hemlocks_Lab_EventScript_Starter3_2
-# 148 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 169 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	showmonpic SPECIES_SPRIGATITO, 10, 3
-# 149 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 170 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	msgbox MooncrestTown_Hemlocks_Lab_EventScript_Starter3_Text_0, MSGBOX_YESNO
-# 150 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 171 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq MooncrestTown_Hemlocks_Lab_EventScript_Starter3_5
-# 180 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 201 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	hidemonpic
-# 181 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 202 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	msgbox MooncrestTown_Hemlocks_Lab_NotChosen
-# 182 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 203 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	waitmessage
 MooncrestTown_Hemlocks_Lab_EventScript_Starter3_1:
-# 186 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 207 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	releaseall
 	return
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter3_2:
-# 145 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 166 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	msgbox MooncrestTown_Hemlocks_Lab_EventScript_Starter1_Text_0
 	goto MooncrestTown_Hemlocks_Lab_EventScript_Starter3_1
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter3_5:
-# 151 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 172 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	setflag FLAG_SYS_POKEMON_GET
-# 152 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 173 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	givemon SPECIES_SPRIGATITO, 5
-# 153 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 174 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PARTY
 	goto_if_eq MooncrestTown_Hemlocks_Lab_EventScript_Starter3_8
-# 163 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 184 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PC
 	goto_if_eq MooncrestTown_Hemlocks_Lab_EventScript_Starter3_9
-# 174 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 195 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	hidemonpic
-# 175 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 196 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	msgbox MooncrestTown_Hemlocks_Lab_EventScript_Starter1_Text_3
-# 176 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 197 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	waitmessage
 	goto MooncrestTown_Hemlocks_Lab_EventScript_Starter3_1
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter3_8:
-# 154 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 175 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	playfanfare MUS_OBTAIN_ITEM
-# 155 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 176 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	msgbox MooncrestTown_Hemlocks_Lab_EventScript_Starter3_Text_1
-# 156 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 177 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	removeobject 1
-# 157 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 178 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	setflag FLAG_GRASS_STARTER
-# 158 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 179 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	setvar VAR_STARTER_MON, 0
-# 159 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 180 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	setvar VAR_MOONCREST_TOWN_STATE, 2
-# 161 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 182 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	call NicknamePartyMon
 	goto MooncrestTown_Hemlocks_Lab_EventScript_Starter3_1
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter3_9:
-# 164 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 185 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	playfanfare MUS_OBTAIN_ITEM
-# 165 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 186 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	msgbox MooncrestTown_Hemlocks_Lab_EventScript_Starter3_Text_1
-# 166 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 187 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	removeobject 1
-# 167 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 188 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	setflag FLAG_GRASS_STARTER
-# 168 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 189 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	setvar VAR_STARTER_MON, 0
-# 169 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 190 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	setvar VAR_MOONCREST_TOWN_STATE, 2
-# 171 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 192 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	call NicknameBoxMon
 	goto MooncrestTown_Hemlocks_Lab_EventScript_Starter3_1
 
 
 NicknamePartyMon::
-# 209 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 230 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	msgbox NicknamePartyMon_Text_0, MSGBOX_YESNO
-# 210 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 231 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq NicknamePartyMon_2
 NicknamePartyMon_1:
-# 214 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 235 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	hidemonpic
 	return
 
 NicknamePartyMon_2:
-# 211 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 232 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	call Common_EventScript_GetGiftMonPartySlot
-# 212 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 233 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	call Common_EventScript_NameReceivedPartyMon
 	goto NicknamePartyMon_1
 
 
 NicknameBoxMon::
-# 218 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 239 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	msgbox NicknamePartyMon_Text_0, MSGBOX_YESNO
-# 219 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 240 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq NicknameBoxMon_2
 NicknameBoxMon_1:
-# 222 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 243 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	call Common_EventScript_TransferredToPC
-# 223 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 244 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	hidemonpic
-# 224 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 245 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	setvar VAR_MOONCREST_TOWN_STATE, 2
 	return
 
 NicknameBoxMon_2:
-# 220 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 241 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	call Common_EventScript_NameReceivedPartyMon
 	goto NicknameBoxMon_1
 
@@ -400,52 +491,59 @@ MooncrestTown_Hemlocks_Lab_MeetHemlock_Movement_0:
 	step_end
 
 MooncrestTown_Hemlocks_Lab_Starter_Generation_Text_0:
-# 52 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 56 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	.string "Would you like to choose the generation\n"
 	.string "of starter you get?$"
 
+MooncrestTown_Hemlocks_Lab_Give_Dex_Text_0:
+# 73 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+	.string "Brendan told me you beat him pretty\n"
+	.string "good. I always knew you would be a good\l"
+	.string "trainier. I have another gift for you.\l"
+	.string "$"
+
 MooncrestTown_Hemlocks_Lab_EventScript_Starter1_Text_0:
-# 58 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 79 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	.string "You already got a Starter$"
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter1_Text_1:
-# 62 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 83 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	.string "Do you want to choose Oshawott?$"
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter1_Text_2:
-# 68 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 89 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	.string "Received Oshawott$"
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter1_Text_3:
-# 86 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 107 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	.string "No More Room$"
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter2_Text_0:
-# 105 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 126 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	.string "Do you want to choose Fennekin?$"
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter2_Text_1:
-# 111 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 132 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	.string "Received Fennekin$"
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter3_Text_0:
-# 149 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 170 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	.string "Do you want to choose Sprigatito?$"
 
 MooncrestTown_Hemlocks_Lab_EventScript_Starter3_Text_1:
-# 155 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 176 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	.string "Received Sprigatito$"
 
 NicknamePartyMon_Text_0:
-# 209 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 230 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	.string "Give it a nickname?$"
 
 MooncrestTown_Hemlocks_Lab_NotChosen::
-# 228 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 249 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	.string "You did not choose the pokemon$"
 
 MooncrestTown_HemlocksLab_DeserveStarter::
-# 232 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 253 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	.string "Ah, hello there {PLAYER}! I was\n"
 	.string "talking to your mom and we think its\l"
 	.string "about time you get your own pokemon.\l"
@@ -454,7 +552,7 @@ MooncrestTown_HemlocksLab_DeserveStarter::
 	.string "different options$"
 
 ReceivedStarter::
-# 236 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
+# 257 "data/maps/MooncrestTown_Hemlocks_Lab/scripts.pory"
 	.string "That's a great choice. I'm sure you two\n"
 	.string "will get along swimmingly. Why don't you\l"
 	.string "go see what Brendan is up to, I think he\l"

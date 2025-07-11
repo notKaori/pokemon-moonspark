@@ -35,6 +35,7 @@ script MooncrestTown_Hemlocks_Lab_MeetHemlock{
         msgbox(MooncrestTown_HemlocksLab_DeserveStarter)
         waitmessage
         setvar(VAR_HEMLOCK_LAB_STATE, 2)
+        setvar(VAR_STARTER_REGION, 9)
         setflag(FLAG_MET_HEMLOCK)
         releaseall
     }
@@ -53,11 +54,23 @@ script MooncrestTown_Hemlocks_Lab_TalkToHemlock{
 // FLAG_SYS_NATIONAL_DEX
 script MooncrestTown_Hemlocks_Lab_Starter_Generation{
     message(format("Would you like to choose the generation of starter you get?"))
-    multichoice(25, 5, MULTI_STARTER_CHOICE, 0)
+    dynmultichoice(25, 1, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, 0)
+    switch(var(VAR_RESULT)){
+        case 0: setvar(VAR_STARTER_REGION, 0)
+        case 1: setvar(VAR_STARTER_REGION, 1)
+        case 2: setvar(VAR_STARTER_REGION, 2)
+        case 3: setvar(VAR_STARTER_REGION, 3)
+        case 4: setvar(VAR_STARTER_REGION, 4)
+        case 5: setvar(VAR_STARTER_REGION, 5)
+        case 6: setvar(VAR_STARTER_REGION, 6)
+        case 7: setvar(VAR_STARTER_REGION, 7)
+        case 8: setvar(VAR_STARTER_REGION, 8)
+    }
+    closemessage
 }
 
 script MooncrestTown_Hemlocks_Lab_Give_Dex{
-
+    msgbox(format("Brendan told me you beat him pretty good. I always knew you would be a good trainier. I have another gift for you.\N"), MSGBOX_NPC)
 }
 
 script MooncrestTown_Hemlocks_Lab_EventScript_Starter1{

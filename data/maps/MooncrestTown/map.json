@@ -73,6 +73,24 @@
       "var": "VAR_MOONCREST_TOWN_STATE",
       "var_value": "0",
       "script": "MooncrestTown_Stay_Safe"
+    },
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 11,
+      "elevation": 0,
+      "var": "VAR_HEMLOCK_LAB_DEX",
+      "var_value": "0",
+      "script": "MooncrestTown_Need_Dex"
+    },
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 12,
+      "elevation": 0,
+      "var": "VAR_HEMLOCK_LAB_DEX",
+      "var_value": "0",
+      "script": "MooncrestTown_Need_Dex"
     }
   ],
   "bg_events": [
