@@ -136,11 +136,15 @@ CrestfallCave_B1F_EventScript_AfterBrendanBattle::
 	setflag FLAG_DEFEATED_RIVAL_CRESTFALL_CAVE
 # 72 "data/maps/CrestfallCave_B1F/scripts.pory"
 	clearflag FLAG_HIDE_BRENDAN_AT_LAB
+# 73 "data/maps/CrestfallCave_B1F/scripts.pory"
+	msgbox CrestfallCave_B1F_EventScript_AfterBrendanBattle_Text_0
 	return
 
 
 # 67 "data/maps/CrestfallCave_B1F/scripts.pory"
 CrestfallCave_B1F_EventScript_AfterBrendanBattle_Movement_0:
+# 67 "data/maps/CrestfallCave_B1F/scripts.pory"
+	walk_right
 # 67 "data/maps/CrestfallCave_B1F/scripts.pory"
 	walk_right
 # 67 "data/maps/CrestfallCave_B1F/scripts.pory"
@@ -165,12 +169,16 @@ CrestfallCave_B1F_EventScript_AfterBrendanBattle_Movement_0:
 	walk_down
 	step_end
 
+CrestfallCave_B1F_EventScript_AfterBrendanBattle_Text_0:
+# 73 "data/maps/CrestfallCave_B1F/scripts.pory"
+	.string "Level cap increased to 15$"
+
 CrestfallCave_B1F_Text_BrendanDefeated::
-# 75 "data/maps/CrestfallCave_B1F/scripts.pory"
+# 76 "data/maps/CrestfallCave_B1F/scripts.pory"
 	.string "You're better than I thought you'd be.$"
 
 CrestfallCave_B1F_Text_BrendanTimeToHeadBack::
-# 79 "data/maps/CrestfallCave_B1F/scripts.pory"
+# 80 "data/maps/CrestfallCave_B1F/scripts.pory"
 	.string "I can tell you're going to be a great\n"
 	.string "trainer.\l"
 	.string "Mom was talking about having another\l"
@@ -178,12 +186,12 @@ CrestfallCave_B1F_Text_BrendanTimeToHeadBack::
 	.string "at the Lab.$"
 
 CrestfallCave_B1F_Text_BrendanCrestfallCavePokemon::
-# 83 "data/maps/CrestfallCave_B1F/scripts.pory"
+# 84 "data/maps/CrestfallCave_B1F/scripts.pory"
 	.string "Interesting, so different Pokemon live\n"
 	.string "on each floor...$"
 
 CrestfallCave_B1F_Text_BrendanLetsBattle::
-# 87 "data/maps/CrestfallCave_B1F/scripts.pory"
+# 88 "data/maps/CrestfallCave_B1F/scripts.pory"
 	.string "If you're here that means mom gave you\n"
 	.string "a Pokemon, eh?\l"
 	.string "Well why don't we gauge how good of a\l"

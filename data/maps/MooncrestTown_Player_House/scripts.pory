@@ -36,18 +36,29 @@ script MooncrestTown_Player_House_TalkToMom{
     applymovement(1, moves(face_player))
     waitmovement(0)
     if(flag(FLAG_SYS_POKEMON_GET) == TRUE){
+        if(var(FLAG_ADVENTURE_STARTED) == TRUE && flag(FLAG_TALKED_TO_MOM) == FALSE){
+            msgbox(format("Look at you, my little {PLAYER}....\N All grown up and fully equipped to go take on the world. I'm so proud of you."))
+            setflag(FLAG_TALKED_TO_MOM)
+            waitmessage
+        }
         msgbox(format("You look a little tired. Would you like to take a quick rest?"), MSGBOX_YESNO)
         if(var(VAR_RESULT) == YES){
-
+            incrementgamestat(GAME_STAT_USED_POKECENTER)
+            special(HealPlayerParty)
+            msgbox(format("Don't stay gone too long, you hear?"))
+            waitmessage
         }
-        waitmessage
+        else{
+            msgbox(format("Come back home and show me all your new Pokemon sometimes, I'd love to see them all."))
+        }
+
     }
     if(flag(FLAG_RIVAL_LEFT_FOR_CRESTFALL_CAVE) == FALSE){
         msgbox(format("Have you gone to talk to Brendan yet?"))
         waitmessage
     }
-    elif(flag(FLAG_DEFEATED_RIVAL_CRESTFALL_CAVE) == TRUE){
-        msgbox(format("I heard you beat Brendan in your first trainer battle. I'm so proud of you honey."))
+    elif(flag(FLAG_DEFEATED_RIVAL_CRESTFALL_CAVE) == TRUE && flag(FLAG_SYS_POKEDEX_GET) == FALSE){
+        msgbox(format("I heard you beat Brendan in your first trainer battle. I'm so proud of you honey. I heard the Professor had something for you."))
         waitmessage
     }
     applymovement(1, moves(face_left))

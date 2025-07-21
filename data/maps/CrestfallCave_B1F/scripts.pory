@@ -64,12 +64,13 @@ script CrestfallCave_B1F_EventScript_StartBrendanBattleMudkip{
 	
 script CrestfallCave_B1F_EventScript_AfterBrendanBattle{
 	msgbox(CrestfallCave_B1F_Text_BrendanTimeToHeadBack, MSGBOX_DEFAULT)
-	applymovement(1, moves(walk_right * 4, walk_down * 7))
+	applymovement(1, moves(walk_right * 5, walk_down * 7))
 	waitmovement(0)
 	removeobject(1)
 	setvar(VAR_HEMLOCK_LAB_STATE, 4)
 	setflag(FLAG_DEFEATED_RIVAL_CRESTFALL_CAVE)
 	clearflag(FLAG_HIDE_BRENDAN_AT_LAB)
+	msgbox(format("Level cap increased to 15"))
 }
 
 text CrestfallCave_B1F_Text_BrendanDefeated{

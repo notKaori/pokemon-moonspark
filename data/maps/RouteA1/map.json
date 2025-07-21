@@ -22,6 +22,11 @@
       "map": "MAP_VALLEY_TOWN",
       "offset": 7,
       "direction": "up"
+    },
+    {
+      "map": "MAP_ROUTE_B1",
+      "offset": 0,
+      "direction": "right"
     }
   ],
   "object_events": [
@@ -35,7 +40,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "EventScript_CutTree",
       "flag": "0"
     },
     {
@@ -48,7 +53,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "EventScript_CutTree",
       "flag": "0"
     },
     {
@@ -61,7 +66,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "RouteA1_Youngster_Billy",
+      "script": "RouteA1_Youngster_Billothy",
       "flag": "0"
     },
     {
@@ -76,6 +81,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RouteA1_Hiker_Edward",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK",
+      "x": 39,
+      "y": 16,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_CLEARED_A1_TUNNEL"
     }
   ],
   "warp_events": [],

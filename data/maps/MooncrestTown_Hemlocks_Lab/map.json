@@ -96,6 +96,25 @@
       "dest_warp_id": "1"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 11,
+      "elevation": 0,
+      "var": "VAR_HEMLOCK_LAB_STATE",
+      "var_value": "2",
+      "script": "DontLeave"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 11,
+      "elevation": 0,
+      "var": "VAR_HEMLOCK_LAB_STATE",
+      "var_value": "2",
+      "script": "DontLeave"
+    }
+  ],
   "bg_events": []
 }

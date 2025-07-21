@@ -3,8 +3,8 @@
     {
       "id": "HEAL_LOCATION_MOONCREST_TOWN_PLAYER_HOUSE",
       "map": "MAP_MOONCREST_TOWN_PLAYER_HOUSE",
-      "x": 7,
-      "y": 11
+      "x": 4,
+      "y": 6
     },
     {
       "id": "HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F",
@@ -137,6 +137,24 @@
       "map": "MAP_PETALBURG_CITY",
       "x": 15,
       "y": 15
+    },
+    {
+      "id": "HEAL_LOCATION_MOONCREST_TOWN",
+      "map": "MAP_MOONCREST_TOWN",
+      "x": 7,
+      "y": 9
+    },
+    {
+      "id": "HEAL_LOCATION_VALLEY_TOWN",
+      "map": "MAP_VALLEY_TOWN",
+      "x": 21,
+      "y": 6
+    },
+    {
+      "id": "HEAL_LOCATION_VALLEY_TOWN_POKECENTER",
+      "map": "MAP_VALLEY_TOWN_POKECENTER",
+      "x": 7,
+      "y": 4
     }
   ]
 }

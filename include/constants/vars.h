@@ -97,9 +97,9 @@
 #define VAR_POKELOT_PRIZE_PLACE                          0x404D
 #define VAR_MAY_RIVAL_STATE                              0x404E // Tracks if May should appear somewhere
 #define VAR_LOTAD_SIZE_RECORD                            0x404F
-#define VAR_MOONCREST_TOWN_STATE                        0x4050
+#define VAR_MOONCREST_TOWN_STATE                         0x4050
 #define VAR_OLDALE_TOWN_STATE                            0x4051
-#define VAR_DEWFORD_TOWN_STATE                           0x4052 // Unused Var
+#define VAR_STARTER_CHOICE                               0x4052 // Holds species of starter
 #define VAR_LAVARIDGE_TOWN_STATE                         0x4053
 #define VAR_CURRENT_SECRET_BASE                          0x4054 // was probably allocated for VAR_FALLARBOR_TOWN_STATE at one point
 #define VAR_STARTER_REGION                               0x4055 // Holds which generation starter the player picked

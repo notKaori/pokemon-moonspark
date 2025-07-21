@@ -1181,3 +1181,19 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/CrestfallCave_B1F/scripts.inc"
 
 	.include "data/maps/CrestfallCave_B2F/scripts.inc"
+
+	.include "data/maps/ValleyTownPokecenter/scripts.inc"
+
+	.include "data/maps/ValleyTown_Mart/scripts.inc"
+
+	.include "data/maps/DarkwoodForest/scripts.inc"
+
+	.include "data/maps/ValleyTunnel/scripts.inc"
+
+	.include "data/maps/Route_B1/scripts.inc"
+
+	.include "data/maps/RouteB2/scripts.inc"
+
+	.include "data/maps/RouteC1/scripts.inc"
+
+	.include "data/maps/GoldHarborCity/scripts.inc"

@@ -137,63 +137,68 @@ MooncrestTown_Stay_Safe_1:
 	return
 
 
-MooncrestTown_RivalHouseSign::
+MooncrestTown_Need_Dex::
 # 51 "data/maps/MooncrestTown/scripts.pory"
 	lockall
 # 52 "data/maps/MooncrestTown/scripts.pory"
-	checkplayergender
+	msgbox MooncrestTown_Need_Dex_Text_0
 # 53 "data/maps/MooncrestTown/scripts.pory"
-	compare VAR_RESULT, MALE
-	goto_if_eq MooncrestTown_RivalHouseSign_2
+	applymovement LOCALID_PLAYER, MooncrestTown_Need_Dex_Movement_0
+# 54 "data/maps/MooncrestTown/scripts.pory"
+	waitmessage
+# 55 "data/maps/MooncrestTown/scripts.pory"
+	waitmovement 0
 # 56 "data/maps/MooncrestTown/scripts.pory"
-	msgbox MooncrestTown_RivalHouseSign_Text_1
-MooncrestTown_RivalHouseSign_1:
-# 58 "data/maps/MooncrestTown/scripts.pory"
 	releaseall
 	return
 
-MooncrestTown_RivalHouseSign_2:
-# 54 "data/maps/MooncrestTown/scripts.pory"
+
+MooncrestTown_RivalHouseSign::
+# 60 "data/maps/MooncrestTown/scripts.pory"
+	lockall
+# 61 "data/maps/MooncrestTown/scripts.pory"
 	msgbox MooncrestTown_RivalHouseSign_Text_0
-	goto MooncrestTown_RivalHouseSign_1
+# 62 "data/maps/MooncrestTown/scripts.pory"
+	releaseall
+	return
 
 
 MooncrestTown_PlayerHouseSign::
-# 62 "data/maps/MooncrestTown/scripts.pory"
+# 66 "data/maps/MooncrestTown/scripts.pory"
 	lockall
-# 63 "data/maps/MooncrestTown/scripts.pory"
+# 67 "data/maps/MooncrestTown/scripts.pory"
 	msgbox MooncrestTown_PlayerHouseSign_Text_0
-# 64 "data/maps/MooncrestTown/scripts.pory"
+# 68 "data/maps/MooncrestTown/scripts.pory"
 	releaseall
 	return
 
 
 MooncrestTown_HemlocksLabSign::
-# 68 "data/maps/MooncrestTown/scripts.pory"
+# 72 "data/maps/MooncrestTown/scripts.pory"
 	lockall
-# 69 "data/maps/MooncrestTown/scripts.pory"
+# 73 "data/maps/MooncrestTown/scripts.pory"
 	msgbox MooncrestTown_HemlocksLabSign_Text_0
-# 70 "data/maps/MooncrestTown/scripts.pory"
+# 74 "data/maps/MooncrestTown/scripts.pory"
 	releaseall
 	return
 
 
 MooncrestTown_CrestfallCaveSign::
-# 74 "data/maps/MooncrestTown/scripts.pory"
+# 78 "data/maps/MooncrestTown/scripts.pory"
 	lockall
-# 75 "data/maps/MooncrestTown/scripts.pory"
+# 79 "data/maps/MooncrestTown/scripts.pory"
 	msgbox MooncrestTown_CrestfallCaveSign_Text_0
-# 76 "data/maps/MooncrestTown/scripts.pory"
+# 80 "data/maps/MooncrestTown/scripts.pory"
 	releaseall
 	return
 
 
 MooncrestTown_TownSign::
-# 80 "data/maps/MooncrestTown/scripts.pory"
+# 84 "data/maps/MooncrestTown/scripts.pory"
 	lockall
-# 81 "data/maps/MooncrestTown/scripts.pory"
+# 85 "data/maps/MooncrestTown/scripts.pory"
 	msgbox MooncrestTown_TownSign_Text_0
-# 82 "data/maps/MooncrestTown/scripts.pory"
+# 86 "data/maps/MooncrestTown/scripts.pory"
 	releaseall
 	return
 
@@ -224,33 +229,45 @@ MooncrestTown_Stay_Safe_Movement_2:
 	face_down
 	step_end
 
+# 53 "data/maps/MooncrestTown/scripts.pory"
+MooncrestTown_Need_Dex_Movement_0:
+# 53 "data/maps/MooncrestTown/scripts.pory"
+	lock_facing_direction
+# 53 "data/maps/MooncrestTown/scripts.pory"
+	walk_right
+# 53 "data/maps/MooncrestTown/scripts.pory"
+	walk_right
+# 53 "data/maps/MooncrestTown/scripts.pory"
+	unlock_facing_direction
+	step_end
+
 MooncrestTown_Stay_Safe_Text_0:
 # 42 "data/maps/MooncrestTown/scripts.pory"
 	.string "This cave is really unsafe if you don't\n"
 	.string "have a pokemon.$"
 
-MooncrestTown_RivalHouseSign_Text_0:
-# 54 "data/maps/MooncrestTown/scripts.pory"
-	.string "It's May's house.$"
+MooncrestTown_Need_Dex_Text_0:
+# 52 "data/maps/MooncrestTown/scripts.pory"
+	.string "You need the Pokedex first.$"
 
-MooncrestTown_RivalHouseSign_Text_1:
-# 56 "data/maps/MooncrestTown/scripts.pory"
+MooncrestTown_RivalHouseSign_Text_0:
+# 61 "data/maps/MooncrestTown/scripts.pory"
 	.string "It's Brendan's house.$"
 
 MooncrestTown_PlayerHouseSign_Text_0:
-# 63 "data/maps/MooncrestTown/scripts.pory"
+# 67 "data/maps/MooncrestTown/scripts.pory"
 	.string "You should recognize your own home...$"
 
 MooncrestTown_HemlocksLabSign_Text_0:
-# 69 "data/maps/MooncrestTown/scripts.pory"
+# 73 "data/maps/MooncrestTown/scripts.pory"
 	.string "It's Hemlock's Lab$"
 
 MooncrestTown_CrestfallCaveSign_Text_0:
-# 75 "data/maps/MooncrestTown/scripts.pory"
+# 79 "data/maps/MooncrestTown/scripts.pory"
 	.string "Crestfall Cave. Rumor has it that\n"
 	.string "there's rare Pokemon to be found in the\l"
 	.string "elaborate caves inside$"
 
 MooncrestTown_TownSign_Text_0:
-# 81 "data/maps/MooncrestTown/scripts.pory"
+# 85 "data/maps/MooncrestTown/scripts.pory"
 	.string "Mooncrest Town, your home.$"

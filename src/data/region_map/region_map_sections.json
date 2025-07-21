@@ -490,7 +490,7 @@
     },
     {
       "id": "MAPSEC_ABANDONED_SHIP",
-      "name": "ABANDONED SHIP",
+      "name": "VALLEY TOWN",
       "x": 6,
       "y": 14,
       "width": 1,
@@ -1709,7 +1709,7 @@
     },
     {
       "id": "MAPSEC_VALLEY_TOWN",
-      "name": "VALLEY_TOWN"
+      "name": "VALLEY TOWN"
     },
     {
       "id": "MAPSEC_CRESTFALL_CAVE",
@@ -1718,6 +1718,30 @@
     {
       "id": "MAPSEC_ROUTE_A1",
       "name": "Route A1"
+    },
+    {
+      "id": "MAPSEC_CRESTFALL_PEAK",
+      "name": "CRESTFALL PEAK"
+    },
+    {
+      "id": "MAPSEC_DARKWOOD_FOREST",
+      "name": "DARKWOOD FOREST"
+    },
+    {
+      "id": "MAPSEC_VALLEY_TUNNEL",
+      "name": "VALLEY TUNNEL"
+    },
+    {
+      "id": "MAPSEC_ROUTE_C1",
+      "name": "ROUTE C1"
+    },
+    {
+      "id": "MAPSEC_ROUTE_B2",
+      "name": "ROUTE B2"
+    },
+    {
+      "id": "MAPSEC_GOLD_HARBOR_CITY",
+      "name": "GOLD HARBOR CITY"
     }
   ]
 }

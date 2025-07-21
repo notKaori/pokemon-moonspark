@@ -2,12 +2,38 @@ mapscripts MooncrestTown_Hemlocks_Lab_MapScripts{
     MAP_SCRIPT_ON_TRANSITION: MooncrestTown_Hemlocks_Lab_Handle_Rival
     MAP_SCRIPT_ON_FRAME_TABLE [
         VAR_HEMLOCK_LAB_STATE, 0: MooncrestTown_Hemlocks_Lab_MeetHemlock
-        VAR_HEMLOCK_LAB_STATE, 3: MooncrestTown_Hemlocks_Lab_GetPokedex
+        VAR_HEMLOCK_LAB_STATE, 4: MooncrestTown_Hemlocks_Lab_GetPokedex
     ]
 }
-
 script MooncrestTown_Hemlocks_Lab_GetPokedex{
     lockall
+    applymovement(LOCALID_PLAYER, moves(walk_right, walk_up, walk_right, walk_up * 6))
+    waitmovement(0)
+    applymovement(4, moves(walk_in_place_faster_down))
+    msgbox(format("Its time for you and Brendan to go out and see the world. I know you'll do great out there.\N Go, catch all the Pokemon you can and become Champion. Do your mom and I proud."))
+    waitmessage
+    playfanfare(MUS_OBTAIN_ITEM)
+    message("{PLAYER} received the Pokedex!$")
+    waitfanfare
+    closemessage
+    setflag(FLAG_SYS_POKEDEX_GET)
+    setflag(FLAG_ADVENTURE_STARTED)
+    special(SetUnlockedPokedexFlags)
+    setvar(VAR_CABLE_CLUB_TUTORIAL_STATE, 1)
+    setflag(FLAG_SYS_NATIONAL_DEX)
+    special(EnableNationalPokedex)
+    msgbox(format("This little doodad will keep track of the pokemon you see and catch. Its an electronic encyclopedia for Pokemon knowledge.\N If you don't mind I'd like if you could collect as much data as possible and bring it back to me periodically. I'll give you rewards based on how much progress you make.\N Go get'em kiddo."))
+    waitmessage
+    applymovement(5, moves(walk_in_place_right))
+    applymovement(LOCALID_PLAYER, moves(face_left))
+    waitmovement(0)
+    msgbox(format("So now we both have a Pokedex. We've got a big adventure ahead of us {PLAYER}. I'm looking forward to seeing how much you progress along the way.\N You'll be seeing more of me"))
+    waitmessage
+    applymovement(5, moves(walk_down *7))
+    waitmovement(0)
+    removeobject(5)
+    setvar(VAR_HEMLOCK_LAB_STATE, 5)
+    setvar(VAR_HEMLOCK_LAB_DEX, 1)
     releaseall
 }
 
@@ -24,6 +50,7 @@ script MooncrestTown_Hemlocks_Lab_Handle_Rival{
 }
 
 script MooncrestTown_Hemlocks_Lab_MeetHemlock{
+    setvar(VAR_STARTER_REGION, 9)
     if(flag(FLAG_RIVAL_LEFT_FOR_CRESTFALL_CAVE)){
         lockall
         playse(SE_PIN)
@@ -31,11 +58,10 @@ script MooncrestTown_Hemlocks_Lab_MeetHemlock{
         waitmovement(0)
         applymovement(4, Common_Movement_Delay48)
         waitmovement(0)
-        applymovement(LOCALID_PLAYER, moves(walk_right * 2, walk_up * 7))
+        applymovement(LOCALID_PLAYER, moves(walk_right, walk_up, walk_right, walk_up * 6))
         msgbox(MooncrestTown_HemlocksLab_DeserveStarter)
         waitmessage
         setvar(VAR_HEMLOCK_LAB_STATE, 2)
-        setvar(VAR_STARTER_REGION, 9)
         setflag(FLAG_MET_HEMLOCK)
         releaseall
     }
@@ -47,184 +73,301 @@ script MooncrestTown_Hemlocks_Lab_TalkToHemlock{
         call(MooncrestTown_Hemlocks_Lab_Starter_Generation)
     }
     elif(flag(FLAG_DEFEATED_RIVAL_CRESTFALL_CAVE) == TRUE && flag(FLAG_SYS_POKEDEX_GET) == FALSE){
-        call(MooncrestTown_Hemlocks_Lab_Give_Dex)
+        call(MooncrestTown_Hemlocks_Lab_GetPokedex)
     }
     releaseall
 }
 // FLAG_SYS_NATIONAL_DEX
 script MooncrestTown_Hemlocks_Lab_Starter_Generation{
-    message(format("Would you like to choose the generation of starter you get?"))
-    dynmultichoice(25, 1, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, 0)
-    switch(var(VAR_RESULT)){
-        case 0: setvar(VAR_STARTER_REGION, 0)
-        case 1: setvar(VAR_STARTER_REGION, 1)
-        case 2: setvar(VAR_STARTER_REGION, 2)
-        case 3: setvar(VAR_STARTER_REGION, 3)
-        case 4: setvar(VAR_STARTER_REGION, 4)
-        case 5: setvar(VAR_STARTER_REGION, 5)
-        case 6: setvar(VAR_STARTER_REGION, 6)
-        case 7: setvar(VAR_STARTER_REGION, 7)
-        case 8: setvar(VAR_STARTER_REGION, 8)
+    msgbox(format("Would you like to choose the generation of starter you get?"), MSGBOX_YESNO)
+    if(var(VAR_RESULT) == TRUE){
+        message(format("Which would you like?"))
+        dynmultichoice(25, 1, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, "Kanto", "Johto", "Hoenn", "Sinnoh", "Unova", "Kalos", "Alola", "Galar", "Paldea")
+        switch(var(VAR_RESULT)){
+            case 0: 
+                setvar(VAR_STARTER_REGION, 0)
+                bufferstring(STR_VAR_1, "Kanto")
+            case 1: 
+                setvar(VAR_STARTER_REGION, 1)
+                bufferstring(STR_VAR_1, "Johto")
+            case 2: 
+                setvar(VAR_STARTER_REGION, 2)
+                bufferstring(STR_VAR_1, "Hoenn")
+            case 3: 
+                setvar(VAR_STARTER_REGION, 3)
+                bufferstring(STR_VAR_1, "Sinnoh")
+            case 4: 
+                setvar(VAR_STARTER_REGION, 4)
+                bufferstring(STR_VAR_1, "Unova")
+            case 5: 
+                setvar(VAR_STARTER_REGION, 5)
+                bufferstring(STR_VAR_1, "Kalos")
+            case 6: 
+                setvar(VAR_STARTER_REGION, 6)
+                bufferstring(STR_VAR_1, "Alolo")
+            case 7: 
+                setvar(VAR_STARTER_REGION, 7)
+                bufferstring(STR_VAR_1, "Galar")
+            case 8: 
+                setvar(VAR_STARTER_REGION, 8)
+                bufferstring(STR_VAR_1, "Paldea")
+        }
+        closemessage
     }
-    closemessage
+    else{
+        setvar(VAR_STARTER_REGION, 9)
+        bufferstring(STR_VAR_1, "Default")
+    }
+    msgbox(format("Ok, you've selected {STR_VAR_1} for your starters."))
 }
 
-script MooncrestTown_Hemlocks_Lab_Give_Dex{
-    msgbox(format("Brendan told me you beat him pretty good. I always knew you would be a good trainier. I have another gift for you.\N"), MSGBOX_NPC)
+
+script MooncrestTown_Hemlocks_Lab_GiveStarter{
+    showmonpic(VAR_STARTER_CHOICE, 10,3)
+    msgbox("Do you want to choose {STR_VAR_1}?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        setflag(FLAG_SYS_POKEMON_GET)
+        givemon(VAR_STARTER_CHOICE, 5)
+        if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Received {STR_VAR_1}")
+            removeobject(VAR_TEMP_0)
+            setvar(VAR_HEMLOCK_LAB_STATE, 3)
+            call(NicknamePartyMon)
+        }
+        elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Received {STR_VAR_1}")
+            removeobject(VAR_TEMP_0)
+            setvar(VAR_HEMLOCK_LAB_STATE, 3)
+            call(NicknameBoxMon)
+        }
+        else{
+            hidemonpic
+            msgbox("No More Room")
+            clearflag(FLAG_WATER_STARTER)
+            clearflag(FLAG_FIRE_STARTER)
+            clearflag(FLAG_GRASS_STARTER)
+        }
+        // if(var(VAR_HEMLOCK_LAB_STATE) == 3){
+        //     bufferitemname()
+        //     msgbox()
+        // }
+        call(MooncrestTown_Hemlocks_Lab_PostSelection)
+    }
+    else{
+        hidemonpic
+        msgbox(MooncrestTown_Hemlocks_Lab_NotChosen)
+    }
+    waitmessage
+}
+
+script MooncrestTown_Hemlocks_Lab_PostSelection{
+    if(flag(FLAG_SYS_POKEMON_GET) == TRUE){
+        switch(var(VAR_STARTER_CHOICE)){
+            case 0:
+                applymovement(4, moves(face_left))
+                waitmovement(0)
+                call(MooncrestTown_Hemlocks_Lab_GiveItems)
+                applymovement(4,moves(face_down))
+                waitmovement
+            case 1:
+                applymovement(4, moves(walk_left))
+                waitmovement(0)
+                call(MooncrestTown_Hemlocks_Lab_GiveItems)
+                applymovement(4,moves(walk_right, face_down))
+                waitmovement
+            case 2:
+                applymovement(4, moves(walk_left * 2))
+                waitmovement(0)
+                call(MooncrestTown_Hemlocks_Lab_GiveItems)
+                applymovement(4,moves(walk_right * 2, face_down))
+                waitmovement
+
+        }
+    }
 }
 
 script MooncrestTown_Hemlocks_Lab_EventScript_Starter1{
     lockall
-    if(flag(FLAG_STARTER_GIVEN) == TRUE){
+    setvar(VAR_TEMP_0, 3)
+    if(flag(FLAG_SYS_POKEMON_GET) == TRUE){
         msgbox("You already got a Starter")
     }
     else {
-        showmonpic(SPECIES_OSHAWOTT, 10,3)
-        msgbox("Do you want to choose Oshawott?", MSGBOX_YESNO)
-        if(var(VAR_RESULT) == YES){
-            setflag(FLAG_SYS_POKEMON_GET)
-            givemon(SPECIES_OSHAWOTT, 5)
-            if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
-                playfanfare(MUS_OBTAIN_ITEM)
-                msgbox("Received Oshawott")
-                removeobject(3)
-                setflag(FLAG_WATER_STARTER)
-                setvar(VAR_STARTER_MON, 2)
-    // setflag(FLAG_STARTER_GIVEN)
-                call(NicknamePartyMon)
-            }
-            elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
-                playfanfare(MUS_OBTAIN_ITEM)
-                msgbox("Received Oshawott")
-                removeobject(3)
-                setflag(FLAG_WATER_STARTER)
-                setvar(VAR_STARTER_MON, 2)
-    // setflag(FLAG_STARTER_GIVEN)
-                call(NicknameBoxMon)
-            }
-            else{
-                hidemonpic
-                msgbox("No More Room")
-            }
+        setflag(FLAG_WATER_STARTER)
+        setvar(VAR_STARTER_MON, 2)
+        switch(var(VAR_STARTER_REGION)){
+            case 0: 
+                bufferspeciesname(STR_VAR_1, SPECIES_SQUIRTLE)
+                setvar(VAR_STARTER_CHOICE, SPECIES_SQUIRTLE)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 1:
+                bufferspeciesname(STR_VAR_1, SPECIES_TOTODILE)
+                setvar(VAR_STARTER_CHOICE, SPECIES_TOTODILE)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 2:
+                bufferspeciesname(STR_VAR_1, SPECIES_MUDKIP)
+                setvar(VAR_STARTER_CHOICE, SPECIES_MUDKIP)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 3:
+                bufferspeciesname(STR_VAR_1, SPECIES_PIPLUP)
+                setvar(VAR_STARTER_CHOICE, SPECIES_PIPLUP)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 4:
+                bufferspeciesname(STR_VAR_1, SPECIES_OSHAWOTT)
+                setvar(VAR_STARTER_CHOICE, SPECIES_OSHAWOTT)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 5:
+                bufferspeciesname(STR_VAR_1, SPECIES_FROAKIE)
+                setvar(VAR_STARTER_CHOICE, SPECIES_FROAKIE)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 6:
+                bufferspeciesname(STR_VAR_1, SPECIES_POPPLIO)
+                setvar(VAR_STARTER_CHOICE, SPECIES_POPPLIO)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 7:
+                bufferspeciesname(STR_VAR_1, SPECIES_SOBBLE)
+                setvar(VAR_STARTER_CHOICE, SPECIES_SOBBLE)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 8:
+                bufferspeciesname(STR_VAR_1, SPECIES_QUAXLY)
+                setvar(VAR_STARTER_CHOICE, SPECIES_QUAXLY)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 9:
+                bufferspeciesname(STR_VAR_1, SPECIES_OSHAWOTT)
+                setvar(VAR_STARTER_CHOICE, SPECIES_OSHAWOTT)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
         }
-        else{
-            hidemonpic
-            msgbox(MooncrestTown_Hemlocks_Lab_NotChosen)
-        }
-        waitmessage
     }
     releaseall
 }
-
 script MooncrestTown_Hemlocks_Lab_EventScript_Starter2{
     lockall
-    if(flag(FLAG_STARTER_GIVEN) == TRUE){
+    setvar(VAR_TEMP_0, 2)
+    if(flag(FLAG_SYS_POKEMON_GET) == TRUE){
         msgbox("You already got a Starter")
     }
     else {
-        showmonpic(SPECIES_FENNEKIN, 10,3)
-        msgbox("Do you want to choose Fennekin?", MSGBOX_YESNO)
-        if(var(VAR_RESULT) == YES){
-            setflag(FLAG_SYS_POKEMON_GET)
-            givemon(SPECIES_FENNEKIN, 5)
-            if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
-                playfanfare(MUS_OBTAIN_ITEM)
-                msgbox("Received Fennekin")
-                removeobject(2)
-                setflag(FLAG_FIRE_STARTER)
-                setvar(VAR_STARTER_MON, 1)
-    // setflag(FLAG_STARTER_GIVEN)
-                call(NicknamePartyMon)
-            }
-            elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
-                playfanfare(MUS_OBTAIN_ITEM)
-                msgbox("Received Fennekin")
-                removeobject(2)
-                setflag(FLAG_FIRE_STARTER)
-                setvar(VAR_STARTER_MON, 1)
-    // setflag(FLAG_STARTER_GIVEN)
-                call(NicknameBoxMon)
-            }
-            else{
-                hidemonpic
-                msgbox("No More Room")
-
-            }
+        setflag(FLAG_FIRE_STARTER)
+        setvar(VAR_STARTER_MON, 1)
+        switch(var(VAR_STARTER_REGION)){
+            case 0: 
+                bufferspeciesname(STR_VAR_1, SPECIES_CHARMANDER)
+                setvar(VAR_STARTER_CHOICE, SPECIES_CHARMANDER)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 1:
+                bufferspeciesname(STR_VAR_1, SPECIES_CYNDAQUIL)
+                setvar(VAR_STARTER_CHOICE, SPECIES_CYNDAQUIL)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 2:
+                bufferspeciesname(STR_VAR_1, SPECIES_TORCHIC)
+                setvar(VAR_STARTER_CHOICE, SPECIES_TORCHIC)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 3:
+                bufferspeciesname(STR_VAR_1, SPECIES_CHIMCHAR)
+                setvar(VAR_STARTER_CHOICE, SPECIES_CHIMCHAR)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 4:
+                bufferspeciesname(STR_VAR_1, SPECIES_TEPIG)
+                setvar(VAR_STARTER_CHOICE, SPECIES_TEPIG)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 5:
+                bufferspeciesname(STR_VAR_1, SPECIES_FENNEKIN)
+                setvar(VAR_STARTER_CHOICE, SPECIES_FENNEKIN)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 6:
+                bufferspeciesname(STR_VAR_1, SPECIES_LITTEN)
+                setvar(VAR_STARTER_CHOICE, SPECIES_LITTEN)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 7:
+                bufferspeciesname(STR_VAR_1, SPECIES_SCORBUNNY)
+                setvar(VAR_STARTER_CHOICE, SPECIES_SCORBUNNY)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 8:
+                bufferspeciesname(STR_VAR_1, SPECIES_FUECOCO)
+                setvar(VAR_STARTER_CHOICE, SPECIES_FUECOCO)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 9:
+                bufferspeciesname(STR_VAR_1, SPECIES_FENNEKIN)
+                setvar(VAR_STARTER_CHOICE, SPECIES_FENNEKIN)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
         }
-        else{
-            hidemonpic
-            msgbox(MooncrestTown_Hemlocks_Lab_NotChosen)
-        }
-        waitmessage
     }
     releaseall
 }
 
 script MooncrestTown_Hemlocks_Lab_EventScript_Starter3{
     lockall
-    if(flag(FLAG_STARTER_GIVEN) == TRUE){
+    setvar(VAR_TEMP_0, 1)
+    if(flag(FLAG_SYS_POKEMON_GET) == TRUE){
         msgbox("You already got a Starter")
     }
     else {
-        showmonpic(SPECIES_SPRIGATITO, 10,3)
-        msgbox("Do you want to choose Sprigatito?", MSGBOX_YESNO)
-        if(var(VAR_RESULT) == YES){
-            setflag(FLAG_SYS_POKEMON_GET)
-            givemon(SPECIES_SPRIGATITO, 5)
-            if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
-                playfanfare(MUS_OBTAIN_ITEM)
-                msgbox("Received Sprigatito")
-                removeobject(1)
-                setflag(FLAG_GRASS_STARTER)
-                setvar(VAR_STARTER_MON, 0)
-                setvar(VAR_MOONCREST_TOWN_STATE, 2)
-    // setflag(FLAG_STARTER_GIVEN)
-                call(NicknamePartyMon)
-            }
-            elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
-                playfanfare(MUS_OBTAIN_ITEM)
-                msgbox("Received Sprigatito")
-                removeobject(1)
-                setflag(FLAG_GRASS_STARTER)
-                setvar(VAR_STARTER_MON, 0)
-                setvar(VAR_MOONCREST_TOWN_STATE, 2)
-    // setflag(FLAG_STARTER_GIVEN)
-                call(NicknameBoxMon)
-            }
-            else{
-                hidemonpic
-                msgbox("No More Room")
-                waitmessage
-            }
-        }
-        else{
-            hidemonpic
-            msgbox(MooncrestTown_Hemlocks_Lab_NotChosen)
-            waitmessage
+        setflag(FLAG_GRASS_STARTER)
+        setvar(VAR_STARTER_MON, 0)
+        switch(var(VAR_STARTER_REGION)){
+            case 0: 
+                bufferspeciesname(STR_VAR_1, SPECIES_BULBASAUR)
+                setvar(VAR_STARTER_CHOICE, SPECIES_BULBASAUR)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 1:
+                bufferspeciesname(STR_VAR_1, SPECIES_CHIKORITA)
+                setvar(VAR_STARTER_CHOICE, SPECIES_CHIKORITA)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 2:
+                bufferspeciesname(STR_VAR_1, SPECIES_TREECKO)
+                setvar(VAR_STARTER_CHOICE, SPECIES_TREECKO)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 3:
+                bufferspeciesname(STR_VAR_1, SPECIES_TURTWIG)
+                setvar(VAR_STARTER_CHOICE, SPECIES_TURTWIG)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 4:
+                bufferspeciesname(STR_VAR_1, SPECIES_SNIVY)
+                setvar(VAR_STARTER_CHOICE, SPECIES_SNIVY)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 5:
+                bufferspeciesname(STR_VAR_1, SPECIES_CHESPIN)
+                setvar(VAR_STARTER_CHOICE, SPECIES_CHESPIN)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 6:
+                bufferspeciesname(STR_VAR_1, SPECIES_ROWLET)
+                setvar(VAR_STARTER_CHOICE, SPECIES_ROWLET)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 7:
+                bufferspeciesname(STR_VAR_1, SPECIES_GROOKEY)
+                setvar(VAR_STARTER_CHOICE, SPECIES_GROOKEY)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 8:
+                bufferspeciesname(STR_VAR_1, SPECIES_SPRIGATITO)
+                setvar(VAR_STARTER_CHOICE, SPECIES_SPRIGATITO)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
+            case 9:
+                bufferspeciesname(STR_VAR_1, SPECIES_SPRIGATITO)
+                setvar(VAR_STARTER_CHOICE, SPECIES_SPRIGATITO)
+                call(MooncrestTown_Hemlocks_Lab_GiveStarter)
         }
     }
-    
     releaseall
 }
 
-// script PostStarterSelectionDialog{
-//     if(flag(FLAG_WATER_STARTER) == TRUE){
-//         applymovement(4,moves(face_left))
-//     }
-//     elif(flag(FLAG_FIRE_STARTER) == TRUE){
-//         applymovement(4, moves(walk_left))
-//     }
-//     elif(flag(FLAG_GRASS_STARTER) == TRUE){
-//         applymovement(4, moves(walk_left * 2))
-//     }
-//     waitmovement(0)
-//     setvar(VAR_MOONCREST_TOWN_STATE, 2)
-//     setvar(VAR_HEMLOCK_LAB_STATE, 3)
-//     setflag(FLAG_SYS_POKEMON_GET)
-//     msgbox(ReceivedStarter)
-//     waitmessage
-//     releaseall
-// }
+script DontLeave{
+    lockall
+    applymovement(LOCALID_PLAYER, moves(walk_up))
+    msgbox("You can't leave right now")
+    waitmessage
+    releaseall
+}
+
+script MooncrestTown_Hemlocks_Lab_GiveItems{
+    msgbox(format("You should take these as well. When I get less lazy they will be better but its what you get for now don't complain."))
+    waitmessage
+    playfanfare(MUS_OBTAIN_ITEM)
+    waitfanfare
+    giveitem(ITEM_REPEL, 150)
+    giveitem(ITEM_RARE_CANDY, 150)
+}
 
 script NicknamePartyMon{
     msgbox("Give it a nickname?", MSGBOX_YESNO)
@@ -243,11 +386,11 @@ script NicknameBoxMon{
     call(Common_EventScript_TransferredToPC)
     hidemonpic
     setvar(VAR_MOONCREST_TOWN_STATE, 2)
-    // setflag(FLAG_STARTER_GIVEN)
+    // setflag(FLAG_SYS_POKEMON_GET)
 }
 
 text MooncrestTown_Hemlocks_Lab_NotChosen{
-    "You did not choose the pokemon"
+    "You did not choose the {STR_VAR_1}"
 }
 
 text MooncrestTown_HemlocksLab_DeserveStarter{

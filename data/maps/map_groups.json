@@ -6,11 +6,13 @@
     "gMapGroup_IndoorDewford",
     "gMapGroup_IndoorLavaridge",
     "gMapGroup_IndoorFallarbor",
+    "gMapGroup_IndoorValleyTown",
     "gMapGroup_IndoorVerdanturf",
     "gMapGroup_IndoorPacifidlog",
     "gMapGroup_IndoorPetalburg",
     "gMapGroup_IndoorSlateport",
     "gMapGroup_IndoorMauville",
+    "gMapGroup_IndoorMooncrestTown",
     "gMapGroup_IndoorRustboro",
     "gMapGroup_IndoorFortree",
     "gMapGroup_IndoorLilycove",
@@ -33,8 +35,7 @@
     "gMapGroup_IndoorRoute113",
     "gMapGroup_IndoorRoute123",
     "gMapGroup_IndoorRoute119",
-    "gMapGroup_IndoorRoute124",
-    "gMapGroup_IndoorMooncrestTown"
+    "gMapGroup_IndoorRoute124"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -47,12 +48,18 @@
     "SootopolisCity",
     "EverGrandeCity",
     "LittlerootTown",
+    "MooncrestTown",
     "OldaleTown",
     "DewfordTown",
     "LavaridgeTown",
     "FallarborTown",
     "VerdanturfTown",
+    "ValleyTown",
     "PacifidlogTown",
+    "RouteA1",
+    "Route_B1",
+    "RouteB2",
+    "RouteC1",
     "Route101",
     "Route102",
     "Route103",
@@ -94,9 +101,7 @@
     "Underwater_Route129",
     "Underwater_Route105",
     "Underwater_Route125",
-    "MooncrestTown",
-    "RouteA1",
-    "ValleyTown"
+    "GoldHarborCity"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",
@@ -138,6 +143,10 @@
     "FallarborTown_PokemonCenter_2F",
     "FallarborTown_CozmosHouse",
     "FallarborTown_MoveRelearnersHouse"
+  ],
+  "gMapGroup_IndoorValleyTown": [
+    "ValleyTownPokecenter",
+    "ValleyTown_Mart"
   ],
   "gMapGroup_IndoorVerdanturf": [
     "VerdanturfTown_BattleTentLobby",
@@ -193,6 +202,11 @@
     "MauvilleCity_PokemonCenter_1F",
     "MauvilleCity_PokemonCenter_2F",
     "MauvilleCity_Mart"
+  ],
+  "gMapGroup_IndoorMooncrestTown": [
+    "MooncrestTown_Player_House",
+    "MooncrestTown_Rivals_House",
+    "MooncrestTown_Hemlocks_Lab"
   ],
   "gMapGroup_IndoorRustboro": [
     "RustboroCity_DevonCorp_1F",
@@ -439,7 +453,9 @@
     "CrestfallCave_B1F",
     "CresftallCave_1F",
     "CrestfallCave_2f",
-    "CrestfallPeak"
+    "CrestfallPeak",
+    "DarkwoodForest",
+    "ValleyTunnel"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",
@@ -630,10 +646,5 @@
   ],
   "gMapGroup_IndoorRoute124": [
     "Route124_DivingTreasureHuntersHouse"
-  ],
-  "gMapGroup_IndoorMooncrestTown": [
-    "MooncrestTown_Player_House",
-    "MooncrestTown_Rivals_House",
-    "MooncrestTown_Hemlocks_Lab"
   ]
 }

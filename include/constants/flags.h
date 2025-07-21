@@ -47,7 +47,7 @@
 #define FLAG_FIRE_STARTER    0x21 // hides second ball in Hemlock's Lab
 #define FLAG_WATER_STARTER   0x22 // hides third ball in Hemlock's Lab
 #define FLAG_STARTER_GIVEN   0x23 // informs scripts that a starter has been picked
-#define FLAG_UNUSED_0x024    0x24 // Unused Flag
+#define FLAG_TALKED_TO_MOM   0x24 // Unused Flag
 #define FLAG_UNUSED_0x025    0x25 // Unused Flag
 #define FLAG_UNUSED_0x026    0x26 // Unused Flag
 #define FLAG_UNUSED_0x027    0x27 // Unused Flag

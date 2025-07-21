@@ -71,44 +71,74 @@ MooncrestTown_Player_House_TalkToMom::
 # 38 "data/maps/MooncrestTown_Player_House/scripts.pory"
 	goto_if_set FLAG_SYS_POKEMON_GET, MooncrestTown_Player_House_TalkToMom_2
 MooncrestTown_Player_House_TalkToMom_1:
-# 45 "data/maps/MooncrestTown_Player_House/scripts.pory"
+# 56 "data/maps/MooncrestTown_Player_House/scripts.pory"
 	goto_if_unset FLAG_RIVAL_LEFT_FOR_CRESTFALL_CAVE, MooncrestTown_Player_House_TalkToMom_5
-# 49 "data/maps/MooncrestTown_Player_House/scripts.pory"
-	goto_if_set FLAG_DEFEATED_RIVAL_CRESTFALL_CAVE, MooncrestTown_Player_House_TalkToMom_6
+# 60 "data/maps/MooncrestTown_Player_House/scripts.pory"
+	goto_if_set FLAG_DEFEATED_RIVAL_CRESTFALL_CAVE, MooncrestTown_Player_House_TalkToMom_7
 MooncrestTown_Player_House_TalkToMom_4:
-# 53 "data/maps/MooncrestTown_Player_House/scripts.pory"
+# 64 "data/maps/MooncrestTown_Player_House/scripts.pory"
 	applymovement 1, MooncrestTown_Player_House_TalkToMom_Movement_1
-# 54 "data/maps/MooncrestTown_Player_House/scripts.pory"
+# 65 "data/maps/MooncrestTown_Player_House/scripts.pory"
 	releaseall
 	return
 
 MooncrestTown_Player_House_TalkToMom_2:
 # 39 "data/maps/MooncrestTown_Player_House/scripts.pory"
-	msgbox MooncrestTown_Player_House_TalkToMom_Text_0, MSGBOX_YESNO
-# 40 "data/maps/MooncrestTown_Player_House/scripts.pory"
+	compare FLAG_ADVENTURE_STARTED, TRUE
+	goto_if_eq MooncrestTown_Player_House_TalkToMom_13
+MooncrestTown_Player_House_TalkToMom_11:
+# 44 "data/maps/MooncrestTown_Player_House/scripts.pory"
+	msgbox MooncrestTown_Player_House_TalkToMom_Text_1, MSGBOX_YESNO
+# 45 "data/maps/MooncrestTown_Player_House/scripts.pory"
 	compare VAR_RESULT, YES
-	goto_if_eq MooncrestTown_Player_House_TalkToMom_10
-MooncrestTown_Player_House_TalkToMom_9:
-# 43 "data/maps/MooncrestTown_Player_House/scripts.pory"
-	waitmessage
+	goto_if_eq MooncrestTown_Player_House_TalkToMom_16
+# 52 "data/maps/MooncrestTown_Player_House/scripts.pory"
+	msgbox MooncrestTown_Player_House_TalkToMom_Text_3
 	goto MooncrestTown_Player_House_TalkToMom_1
 
 MooncrestTown_Player_House_TalkToMom_5:
-# 46 "data/maps/MooncrestTown_Player_House/scripts.pory"
-	msgbox MooncrestTown_Player_House_TalkToMom_Text_1
-# 47 "data/maps/MooncrestTown_Player_House/scripts.pory"
+# 57 "data/maps/MooncrestTown_Player_House/scripts.pory"
+	msgbox MooncrestTown_Player_House_TalkToMom_Text_4
+# 58 "data/maps/MooncrestTown_Player_House/scripts.pory"
 	waitmessage
 	goto MooncrestTown_Player_House_TalkToMom_4
 
 MooncrestTown_Player_House_TalkToMom_6:
-# 50 "data/maps/MooncrestTown_Player_House/scripts.pory"
-	msgbox MooncrestTown_Player_House_TalkToMom_Text_2
-# 51 "data/maps/MooncrestTown_Player_House/scripts.pory"
+# 61 "data/maps/MooncrestTown_Player_House/scripts.pory"
+	msgbox MooncrestTown_Player_House_TalkToMom_Text_5
+# 62 "data/maps/MooncrestTown_Player_House/scripts.pory"
 	waitmessage
 	goto MooncrestTown_Player_House_TalkToMom_4
 
-MooncrestTown_Player_House_TalkToMom_10:
-	goto MooncrestTown_Player_House_TalkToMom_9
+MooncrestTown_Player_House_TalkToMom_7:
+# 60 "data/maps/MooncrestTown_Player_House/scripts.pory"
+	goto_if_unset FLAG_SYS_POKEDEX_GET, MooncrestTown_Player_House_TalkToMom_6
+	goto MooncrestTown_Player_House_TalkToMom_4
+
+MooncrestTown_Player_House_TalkToMom_12:
+# 40 "data/maps/MooncrestTown_Player_House/scripts.pory"
+	msgbox MooncrestTown_Player_House_TalkToMom_Text_0
+# 41 "data/maps/MooncrestTown_Player_House/scripts.pory"
+	setflag FLAG_TALKED_TO_MOM
+# 42 "data/maps/MooncrestTown_Player_House/scripts.pory"
+	waitmessage
+	goto MooncrestTown_Player_House_TalkToMom_11
+
+MooncrestTown_Player_House_TalkToMom_13:
+# 39 "data/maps/MooncrestTown_Player_House/scripts.pory"
+	goto_if_unset FLAG_TALKED_TO_MOM, MooncrestTown_Player_House_TalkToMom_12
+	goto MooncrestTown_Player_House_TalkToMom_11
+
+MooncrestTown_Player_House_TalkToMom_16:
+# 46 "data/maps/MooncrestTown_Player_House/scripts.pory"
+	incrementgamestat GAME_STAT_USED_POKECENTER
+# 47 "data/maps/MooncrestTown_Player_House/scripts.pory"
+	special HealPlayerParty
+# 48 "data/maps/MooncrestTown_Player_House/scripts.pory"
+	msgbox MooncrestTown_Player_House_TalkToMom_Text_2
+# 49 "data/maps/MooncrestTown_Player_House/scripts.pory"
+	waitmessage
+	goto MooncrestTown_Player_House_TalkToMom_1
 
 
 # 16 "data/maps/MooncrestTown_Player_House/scripts.pory"
@@ -147,9 +177,9 @@ MooncrestTown_Player_House_TalkToMom_Movement_0:
 	face_player
 	step_end
 
-# 53 "data/maps/MooncrestTown_Player_House/scripts.pory"
+# 64 "data/maps/MooncrestTown_Player_House/scripts.pory"
 MooncrestTown_Player_House_TalkToMom_Movement_1:
-# 53 "data/maps/MooncrestTown_Player_House/scripts.pory"
+# 64 "data/maps/MooncrestTown_Player_House/scripts.pory"
 	face_left
 	step_end
 
@@ -166,16 +196,33 @@ MooncrestTown_Player_House_On_Frame_Table_Text_1:
 	.string "Recieved the Running Shoes$"
 
 MooncrestTown_Player_House_TalkToMom_Text_0:
-# 39 "data/maps/MooncrestTown_Player_House/scripts.pory"
+# 40 "data/maps/MooncrestTown_Player_House/scripts.pory"
+	.string "Look at you, my little {PLAYER}....\n"
+	.string "All grown up and fully equipped to go\l"
+	.string "take on the world. I'm so proud of you.$"
+
+MooncrestTown_Player_House_TalkToMom_Text_1:
+# 44 "data/maps/MooncrestTown_Player_House/scripts.pory"
 	.string "You look a little tired. Would you like to\n"
 	.string "take a quick rest?$"
 
-MooncrestTown_Player_House_TalkToMom_Text_1:
-# 46 "data/maps/MooncrestTown_Player_House/scripts.pory"
+MooncrestTown_Player_House_TalkToMom_Text_2:
+# 48 "data/maps/MooncrestTown_Player_House/scripts.pory"
+	.string "Don't stay gone too long, you hear?$"
+
+MooncrestTown_Player_House_TalkToMom_Text_3:
+# 52 "data/maps/MooncrestTown_Player_House/scripts.pory"
+	.string "Come back home and show me all your new\n"
+	.string "Pokemon sometimes, I'd love to see them\l"
+	.string "all.$"
+
+MooncrestTown_Player_House_TalkToMom_Text_4:
+# 57 "data/maps/MooncrestTown_Player_House/scripts.pory"
 	.string "Have you gone to talk to Brendan yet?$"
 
-MooncrestTown_Player_House_TalkToMom_Text_2:
-# 50 "data/maps/MooncrestTown_Player_House/scripts.pory"
+MooncrestTown_Player_House_TalkToMom_Text_5:
+# 61 "data/maps/MooncrestTown_Player_House/scripts.pory"
 	.string "I heard you beat Brendan in your first\n"
 	.string "trainer battle. I'm so proud of you\l"
-	.string "honey.$"
+	.string "honey. I heard the Professor had\l"
+	.string "something for you.$"
