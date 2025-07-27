@@ -17,11 +17,6 @@
       "map": "MAP_ROUTE_B2",
       "offset": 6,
       "direction": "down"
-    },
-    {
-      "map": "MAP_GOLD_HARBOR_CITY",
-      "offset": -56,
-      "direction": "right"
     }
   ],
   "object_events": [
